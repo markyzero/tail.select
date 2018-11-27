@@ -45,30 +45,35 @@
         <meta name="og:description" content="tail.select is back: Create beautiful, functional and extensive (Multi) Select Fields with pure, vanilla JavaScript." />
 
         <!-- Stylesheets -->
-        <link type="text/css" rel="stylesheet" href="assets/css/tail.demo.css?ver=2.2.0" />
         <link type="text/css" rel="stylesheet" href="assets/css/octicons.css?ver=8.1.0" />
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i|Oswald:400,500" />
-        <link type="text/css" rel="stylesheet" href="source/css/tail.select.css?ver=0.4.2" />
+        <link type="text/css" rel="stylesheet" href="assets/css/tail.demo.css?ver=2.2.0" />
+        <link id="main-sheet" type="text/css" rel="stylesheet" href="source/css/tail.select-default.css" />
         <style type="text/css">
-            .content section.welcome-back{
-                width: 100%;
-                height: 500px;
+            .welcome{
+                min-height: 500px;
                 margin: -1px 0 0 0;
-                padding: 0;
-                position: relative;
-                background-color: #DC4650;
-                background-image: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
-                background-image: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%);
-                background-image: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#33000000',GradientType=1 );
+                padding: 65px 0;
+                display: block;
+                background-color: #202428;
             }
-            .content section.welcome-back .welcome-title{
-                top: 50%;
+            .welcome .container{
+                position: relative;
+            }
+            .welcome .example-container{
+                float: left;
+                width: 50%;
+                margin: 0;
+                padding: 0;
+                display: inline-block;
+                position: relative;
+            }
+            .welcome .welcome-title{
+                top: 15px;
                 left: 50%;
                 width: 500px;
                 height: 60px;
                 color: #ffffff;
-                margin: -80px 0 0 -250px;
+                margin: 0 0 0 -250px;
                 padding: 0;
                 display: block;
                 position: absolute;
@@ -80,78 +85,141 @@
                 text-transform: uppercase;
                 text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
             }
-            .content section.welcome-back .welcome-cloud{
-                margin: 0;
-                padding: 0;
-                display: block;
-            }
-            .content section.welcome-back .welcome-cloud ul{
-                width: 100%;
-                height: 500px;
-                margin: 0;
-                padding: 0;
-                display: block;
-                position: relative;
-                list-style: none;
-            }
-            .content section.welcome-back .welcome-cloud ul li{
-                color: rgba(255, 255, 255, 0.8);
-                margin: 5px;
-                padding: 10px;
-                display: block;
-                position: absolute;
-                line-height: 40px;
-                letter-spacing: 1px;
-                text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-            }
-            .content section.welcome-back .welcome-cloud ul li b{
-                color: rgba(255, 255, 255, 1);
-            }
-            .content section.welcome-back .welcome-cloud ul li.item-1{
-                top: 30px;
-                left: 40px;
-                font-size: 30px;
-            }
-            .content section.welcome-back .welcome-cloud ul li.item-2{
-                left: 50px;
-                bottom: 30px;
-                font-size: 22px;
-            }
-            .content section.welcome-back .welcome-cloud ul li.item-3{
-                right: 100px;
-                bottom: 65px;
-                font-size: 26px;
-            }
-            .content section.welcome-back .welcome-example{
-                top: 50%;
+            .welcome .welcome-example{
+                top: 175px;
                 left: 50%;
                 right: 200px;
-                width: 300px;
-                margin: 20px 0 0 -150px;
+                width: 330px;
+                margin: 0 0 0 -165px;
                 padding: 20px 10px;
                 display: inline-block;
                 position: absolute;
                 text-align: center;
-                background-color: rgba(0, 0, 0, 0.15);
-                border: 1px solid rgba(0, 0, 0, 0.2);
+                background-color: #101418;
+                border-width: 1px;
+                border-style: solid;
+                border-color: #000408 #303438 #303438 #000408;
                 border-radius: 5px;
                 -moz-border-radius: 5px;
                 -webkit-border-radius: 5px;
-                box-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
             }
-            .content section.welcome-back .welcome-example .tail-select .tail-select-label,
-            .content section.welcome-back .welcome-example .tail-select .tail-select-dropdown{
-                border-color: transparent;
-                background-color: #ffffff;
-                box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px 1px rgba(0, 0, 0, 0.1);
-                -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px 1px rgba(0, 0, 0, 0.1);
-                -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+            .welcome .feature-container{
+                color: rgba(255, 255, 255, 0.75);
+                float: right;
+                width: 50%;
+                margin: 0;
+                padding: 15px 15px 15px 45px;
+                display: inline-block;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .welcome .feature-container b{
+                color: rgba(255, 255, 255, 0.95);
+                font-size: 110%;
+            }
+            .welcome .feature-container h1{
+                margin: 15px 0;
+            }
+            .welcome .tail-select.default.white:hover .select-label,
+            .welcome .tail-select.default.white.idle .select-label,
+            .welcome .tail-select.default.white.active .select-label{
+                box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1), 0 0 1px 1px rgba(0, 0, 0, 0.25);
+                -moz-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1), 0 0 1px 1px rgba(0, 0, 0, 0.25);
+                -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1), 0 0 1px 1px rgba(0, 0, 0, 0.25);
+            }
+            .arrow-container{
+                left: 100px;
+                bottom: -80px;
+                width: 250px;
+                height: 150px;
+                opacity: 0.35;
+                display: inline-block;
+                position: absolute;
+                background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwcHgiIGhlaWdodD0iMTc5cHgiIHZpZXdCb3g9IjAgMCAyNTAgMTc5IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgPjxwYXRoIGQ9Ik00MS44MTIsMTQ4LjU5M2MwLjY1MSwtMC4yMTUgMC43ODMsLTIuMDkgMC4yNTUsLTUuMTU1Yy0wLjUyOSwtMy4wNjUgLTEuNzQ3LC03LjMxOSAtMy44NzgsLTEyLjA2OGMtMS43NDksLTMuODk2IC00LjExOCwtOC4xMDkgLTcuMDg3LC0xMi4yMDVjLTIuNTUzLC0zLjUyMyAtNS4zLC02LjYyIC03Ljk5LC05LjE5OWMtMi42OSwtMi41OCAtNS4zMiwtNC42NDUgLTcuNjM3LC02LjE4OWMtMi4zMTgsLTEuNTQ0IC00LjMyLC0yLjU3IC01Ljc5MywtMy4xMDljLTEuNDcyLC0wLjU0IC0yLjQxMywtMC41OTggLTIuNjczLC0wLjE3MmMtMC4yNTksMC40MjYgMC4xODEsMS4yOTUgMS4xNDQsMi41M2MwLjk2MywxLjIzNiAyLjQ0NSwyLjg0MyA0LjI0OCw0LjgwNGMxLjgwMywxLjk2IDMuOTI2LDQuMjc2IDYuMTgxLDYuOTIyYzIuMjU0LDIuNjQ1IDQuNjM4LDUuNjIyIDYuOTg5LDguODY2YzIuNzM0LDMuNzcyIDUuMTIyLDcuNDkxIDcuMTM5LDEwLjg3N2MyLjQ2Myw0LjEzMyA0LjM5LDcuNzY0IDUuODgxLDEwLjMxMWMxLjQ5LDIuNTQ2IDIuNTcsNC4wMDIgMy4yMjEsMy43ODdsMCwwWiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik00Mi4zNjgsMTQ2Ljc3MWMwLjY2OSwwLjAyMyAxLjMxNywtMS41ODkgMi4wNzcsLTQuMzAyYzAuNzYxLC0yLjcxMiAxLjY1NiwtNi41MjkgMi45MzEsLTEwLjk0M2MxLjA0MywtMy42MTcgMi4zNTEsLTcuNjM1IDMuOTc0LC0xMS43OTNjMS4zOTQsLTMuNTc1IDIuODg3LC02LjkxNyA0LjM0MywtOS45MjNjMS40NTUsLTMuMDA2IDIuODcsLTUuNjc3IDQuMDc0LC03Ljk0YzEuMjA0LC0yLjI2MiAyLjE5NCwtNC4xMTggMi43ODgsLTUuNDk4YzAuNTk1LC0xLjM3OSAwLjc5LC0yLjI4NyAwLjQzNywtMi42MDZjLTAuMzU0LC0wLjMxOSAtMS4yMjYsLTAuMDE3IC0yLjQ3OSwwLjg2NWMtMS4yNTIsMC44ODEgLTIuODgxLDIuMzQ2IC00LjY3Niw0LjM2NWMtMS43OTUsMi4wMiAtMy43NTEsNC41OTcgLTUuNjM1LDcuNjU5Yy0xLjg4MywzLjA2MiAtMy42ODgsNi42MDggLTUuMjAyLDEwLjQ5MWMtMS43NjEsNC41MTUgLTIuOTI3LDguOTc4IC0zLjU4OCwxMi45ODhjLTAuODA0LDQuODg3IC0wLjg3Myw5LjA4MiAtMC41OTQsMTIuMDEzYzAuMjgsMi45MyAwLjg4MSw0LjYgMS41NSw0LjYyNGwwLDBaIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTExLjI4OSw5OS45MTVjLTAuMjI3LDAuODE1IDAuODUzLDIuMTg3IDMuMDMxLDMuNjYyYzIuMTc3LDEuNDczIDUuNDY4LDMuMDE3IDkuNTY2LDMuOTQ1YzMuMzYyLDAuNzU5IDcuMjYyLDEuMDg2IDExLjQyMSwwLjcxNmMzLjU3NiwtMC4zMTcgNi45OTcsLTEuMTE3IDEwLjA2OSwtMi4xOTdjMy4wNzIsLTEuMDgxIDUuNzk1LC0yLjQ0IDguMDIzLC0zLjgxOGMyLjIyOSwtMS4zNzkgMy45NjUsLTIuNzczIDUuMTA5LC0zLjk0YzEuMTQ1LC0xLjE2NyAxLjcsLTIuMTAyIDEuNTgxLC0yLjY1MWMtMC4xMTgsLTAuNTQ5IC0wLjg5NiwtMC42NjcgLTIuMTg4LC0wLjQ4NWMtMS4yOTEsMC4xODEgLTMuMDk4LDAuNjU0IC01LjI5OSwxLjIyNmMtMi4yMDEsMC41NzIgLTQuNzk4LDEuMjQyIC03LjY3LDEuODI5Yy0yLjg3MiwwLjU4NyAtNi4wMTksMS4wODkgLTkuMzEzLDEuMzgyYy0zLjgzLDAuMzQxIC03LjQzNSwwLjM1OSAtMTAuNjMyLDAuMjEyYy0zLjkwMywtMC4xNzcgLTcuMjAxLC0wLjU3OSAtOS41OSwtMC43MTVjLTIuMzg5LC0wLjEzNyAtMy44ODEsMC4wMTkgLTQuMTA4LDAuODM0bDAsMFoiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMjMwLjUsOTYuNjMyYzE1LjA1OSwxLjUyNCAzOS4xMzMsNS42ODkgLTU1LjY4MywtMjcuNjI2Yy05NC44MTYsLTMzLjMxNSAtOTcuMTg1LC0zOC4zNjUgLTEyNS45NjYsLTM5LjIxMmMtMjguNzgyLC0wLjg0NyAtMjcuOTM3LDE5LjI2MyAtMjUuNzA1LDMxLjM0N2MyLjIzMywxMi4wODUgMS42NDcsMzguNjIzIDEyLjA1MiwzMy4yMzhjMTAuNDA1LC01LjM4NCAtMjguMDgsLTU5LjY2MSAxOC42OTMsLTU1LjEzYzQ2Ljc3Miw0LjUzMSA2NS4wMTMsMTcuNzk1IDg5LjIxMiwyNi43NWMyNC4yLDguOTU1IDcyLjMzOSwyOS4xMDggODcuMzk3LDMwLjYzM1oiIGZpbGw9IiNmZmYiLz48L3N2Zz4=");
+            }
+            .arrow-container span{
+                left: 50%;
+                bottom: 15px;
+                color: #ffffff;
+                display: inline-block;
+                position: absolute;
+                font-size: 32px;
+                font-family: "Oswald";
+                text-shadow: 2px 2px 0 #202428, 4px 4px 0 #000408;
+                line-height: 50px;
+                white-space: nowrap;
+                transform: rotate(-15deg) skewX(7deg) skewY(7deg);
+                -moz-transform: rotate(-15deg) skewX(7deg) skewY(7deg);
+                -webkit-transform: rotate(-15deg) skewX(7deg) skewY(7deg);
             }
             span.options-path{
                 color: #707478;
                 displaY: block;
                 font-size: 10px;
                 line-height: 14px;
+            }
+            button.octicon-button{
+                color: #202428;
+                font-size: 14px;
+                text-shadow: none;
+                line-height: 22px;
+                vertical-align: top;
+                border: 1px solid #202428;
+                background-color: transparent;
+                box-shadow: none;
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+                transition: color 142ms linear, background 142ms linear;
+                -moz-transition: color 142ms linear, background 142ms linear;
+                -webkit-transition: color 142ms linear, background 142ms linear;
+            }
+            button.octicon-button:hover{
+                color: #ffffff;
+                border-color: #202428;
+                background-color: #202428;
+            }
+            .buttons:after{
+                clear: both;
+                content: "";
+                display: table;
+            }
+            .buttons{
+                margin: 0 5px;
+                display: inline-block;
+            }
+            .buttons > button.octicon-button{
+                float: left;
+                margin: 0 0 0 -1px;
+                border-radius: 0;
+                -moz-border-radius: 0;
+                -webkit-border-radius: 0;
+            }
+            .buttons > button.octicon-button:first-child{
+                margin-left: 0;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+                -moz-border-radius-topleft: 3px;
+                -moz-border-radius-bottomleft: 3px;
+                -webkit-border-top-left-radius: 3px;
+                -webkit-border-bottom-left-radius: 3px;
+            }
+            .buttons > button.octicon-button:last-child{
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                -moz-border-radius-topright: 3px;
+                -moz-border-radius-bottomright: 3px;
+                -webkit-border-top-right-radius: 3px;
+                -webkit-border-bottom-right-radius: 3px;
+            }
+            .octicon-sign-in,
+            .octicon-sign-out{
+                margin: 0 3px 0 0;
+                font-size: 18px;
+                line-height: 22px;
+                vertical-align: top;
+                displaY: inline-block;
+                transform: rotate(-90deg);
+                -moz-transform: rotate(-90deg);
+                -webkit-transform: rotate(-90deg);
             }
         </style>
 
@@ -160,7 +228,8 @@
         <script type="text/javascript">
             require.config({
                 paths: {
-                    "source": "../../source/js"
+                    "source": "../../source/js",
+                    "langs": "../../source/langs"
                 }
             });
         </script>
@@ -175,36 +244,22 @@
                         </div>
                         <div class="tail-project">
                             <span class="tail-title">tail.<b>select</b></span>
-                            <span class="tail-version">0.4.2 - <b>Beta</b></span>
+                            <span class="tail-version">0.5.0 - <b>Beta</b></span>
                         </div>
                     </a>
                 </div>
                 <div class="container-right header-right">
                     <ul class="main-navi">
-                        <li class="navi-item item-internal active has-submenu">
+                        <li class="navi-item item-internal active">
                             <a href="./index.html"><span>Demo</span></a>
                             <ul class="sub-navi">
-                                <li class="navi-item has-submenu">
-                                    <a href="#">Languages</a>
-                                    <ul class="sub-navi sub-sub-navi">
-                                        <li class="navi-item"><a href="./index-de.html">German</a></li>
-                                        <li class="separator"></li>
-                                        <li class="navi-item"><a href="https://github.com/pytesNET/tail.select/wiki/Help-Translating">Help Translating</a></li>
-                                    </ul>
-                                </li>
-                                <li class="navi-item has-submenu">
-                                    <a href="#">Themes</a>
-                                    <ul class="sub-navi sub-sub-navi">
-                                        <li class="navi-item"><a href="./themes/modern-white.html">Modern White</a></li>
-                                    </ul>
-                                </li>
-                                <li class="separator"></li>
-                                <li class="navi-item"><a href="./index-jquery.html">jQuery 1.12.4</a></li>
-                                <li class="navi-item"><a href="./index-mootools.html">MooTools 1.6.0</a></li>
                                 <li class="navi-item"><a href="./index-amd.html">AMD @ requireJS</a></li>
+                                <li class="navi-item"><a href="./index-es6.html">ECMAScript 2015</a></li>
+                                <li class="separator"></li>
+                                <li class="navi-item"><a href="./index-amd.html">Wanna help translating?</a></li>
                             </ul>
                         </li>
-                        <li class="navi-item item-internal"><a href="./docs.html"><span>Docs</span></a></li>
+                        <li class="navi-item item-internal"><a href="https://github.com/pytesNET/tail.select/wiki"><span>Docs</span></a></li>
 
                         <li class="navi-item item-external">
                             <a href="https://www.github.com/pytesNET/tail.select"><span class="octicon octicon-mark-github"></span></a>
@@ -222,6 +277,8 @@
                 <div class="container-left toolbar-left">
                     <span class="label">Written in</span>
                     <span class="javascript" data-tooltip="Vanilla JavaScript">JavaScript</span>
+                    <span class="less" data-tooltip="LESS">LESS</span>
+                    <span class="css" data-tooltip="CSS">CSS</span>
                 </div>
                 <div class="container-right toolbar-right">
                     <ul>
@@ -235,12 +292,13 @@
             </div>
         </div>
 
-        <div class="content">
-            <section class="welcome-back">
-                <div class="container">
+        <div class="welcome">
+            <div class="container">
+                <div class="example-container">
                     <div class="welcome-title">tail.select is back</div>
                     <div class="welcome-example">
-                        <select type="text" id="select-special" class="select-special" multiple>
+                        <form id="main">
+                        <select type="text" id="select-special" class="select-special" name="test" multiple>
                             <optgroup label="Atari">
                                 <option>Atari 2600</option>
                                 <option>Atari 5200</option>
@@ -300,16 +358,86 @@
                                 <option>Sony PlayStation Vita</option>
                             </optgroup>
                         </select>
-                    </div>
-                    <div class="welcome-cloud">
-                        <ul>
-                            <li class="item-1">Now written in <b>Pure JavaScript</b></li>
-                            <li class="item-2">With an awesome <b>Search</b> function</li>
-                            <li class="item-3">In a <b>beautiful</b> new <b>Design</b></li>
-                        </ul>
+                    </form>
                     </div>
                 </div>
-            </section>
+
+                <div class="feature-container">
+                    <h1>A few notable features</h1>
+                    <ul class="checklist">
+                        <li class="check">Beautiful (Multiple) <b>Select</b> Field</li>
+                        <li class="check">Awesome <b>Search</b> function</li>
+                        <li class="check">Move selected <b>Options</b> wherever you want</li>
+                        <li class="check">Over <b>30</b> Options & <b>5</b> Themes</li>
+                        <li class="check">Extend- and <b>Translat</b>able Environment</li>
+                        <li class="check">Hackable with <b>3</b> Callbacks & <b>3</b> Events</li>
+                        <li>tail.select is back in <b>plain vanilla</b> JavaScript...</li>
+                        <li>...and still Free/To/Use - <b>MIT</b> Licensed</li>
+                    </ul>
+                </div>
+
+                <div class="arrow-container"><span>Check out our new Themes!</span></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="container" style="padding-top:30px;">
+                <div class="actionbar">
+                    <div class="actionbar-left">
+                        <div class="action-select">
+                            <div class="select-icon"><span class="octicon octicon-gear"></span></div>
+                            <select id="change-design">
+                                <option value="default">Design: Default</option>
+                                <option value="modern">Design: Modern</option>
+                                <option value="bootstrap2">Design: Bootstrap 2</option>
+                                <option value="bootstrap3">Design: Bootstrap 3</option>
+                                <option value="bootstrap4">Design: Bootstrap 4</option>
+                            </select>
+                        </div>
+
+                        <div class="action-select">
+                            <div class="select-icon"><span class="octicon octicon-paintcan"></span></div>
+                            <select id="change-color" data-connect="#change-design">
+                                <option data-value="default" value="white">Color: White</option>
+                                <option data-value="default" value="black">Color: Black</option>
+                                <option data-value="modern" value="white">Color: White</option>
+                                <option data-value="modern" value="black">Color: Black</option>
+                                <option data-value="bootstrap2" value="default">Color: Default White</option>
+                                <option data-value="bootstrap2" value="primary-blue">Color: Primary Blue</option>
+                                <option data-value="bootstrap2" value="danger-red">Color: Danger Red</option>
+                                <option data-value="bootstrap2" value="warning-orange">Color: Warning Orange</option>
+                                <option data-value="bootstrap2" value="success-green">Color: Success Green</option>
+                                <option data-value="bootstrap2" value="info-blue">Color: Info Blue</option>
+                                <option data-value="bootstrap2" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap3" value="default">Color: Default White</option>
+                                <option data-value="bootstrap3" value="primary-blue">Color: Primary Blue</option>
+                                <option data-value="bootstrap3" value="danger-red">Color: Danger Red</option>
+                                <option data-value="bootstrap3" value="warning-orange">Color: Warning Orange</option>
+                                <option data-value="bootstrap3" value="success-green">Color: Success Green</option>
+                                <option data-value="bootstrap3" value="info-blue">Color: Info Blue</option>
+                                <option data-value="bootstrap3" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap4" value="default">Color: Default White</option>
+                                <option data-value="bootstrap4" value="primary-blue">Color: Primary Blue</option>
+                                <option data-value="bootstrap4" value="danger-red">Color: Danger Red</option>
+                                <option data-value="bootstrap4" value="warning-orange">Color: Warning Orange</option>
+                                <option data-value="bootstrap4" value="success-green">Color: Success Green</option>
+                                <option data-value="bootstrap4" value="info-blue">Color: Info Blue</option>
+                                <option data-value="bootstrap4" value="invert-black">Color: Invert Black</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="actionbar-right">
+                        <div class="action-select">
+                            <div class="select-icon"><span class="octicon octicon-book"></span></div>
+                            <select id="change-locale">
+                                <option value="en">Language: English</option>
+                                <option value="de">Sprache: Deutsch</option>
+                                <option value="fr">Langue: Français</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="content">
@@ -401,10 +529,10 @@
                                     <option>Microsoft Windows 10</option>
                                     <option>Nintendo Entertainment System</option>
                                     <option>Super Nintendo Entertainment System</option>
-                                    <option>Nintendo GameBoy</option>
-                                    <option>Nintendo GameBoy Color</option>
-                                    <option>Nintendo GameBoy Advanced</option>
-                                    <option>Nintendo GameBoy Advanced SP</option>
+                                    <option selected>Nintendo GameBoy</option>
+                                    <option selected>Nintendo GameBoy Color</option>
+                                    <option selected>Nintendo GameBoy Advanced</option>
+                                    <option selected>Nintendo GameBoy Advanced SP</option>
                                     <option>Nintendo DS</option>
                                     <option>Nintendo DS Lite</option>
                                     <option>Nintendo DSi</option>
@@ -617,18 +745,9 @@
                         <aside>
                             <h1>Single Search</h1>
                             <div class="example">
-                                <select type="text" id="select-5" class="select-search">
+                                <select type="text" id="select-5" class="select" data-select="{'search': true}">
                                     <optgroup label="Atari">
-                                        <option>Atari 2600</option>
-                                        <option>Atari 5200</option>
-                                        <option>Atari 7800</option>
-                                        <option disabled>Atari Panther</option>
-                                        <option>Atari Jaguar</option>
-                                        <option disabled>Atari Jaguar 2</option>
-                                        <option>Atari Flashback</option>
-                                        <option>Atari Flashback II</option>
-                                        <option disabled>Ataribox</option>
-                                    </optgroup>
+                                        <option>Atari 2600</option><option>Atari 5200</option><option>Atari 7800</option><option disabled>Atari Panther</option><option>Atari Jaguar</option><option disabled>Atari Jaguar 2</option><option>Atari Flashback</option><option>Atari Flashback II</option><option disabled>Ataribox</option>                                    </optgroup>
                                     <optgroup label="Microsoft">
                                         <option>Microsoft XBox</option>
                                         <option>Microsoft XBox 360</option>
@@ -682,7 +801,7 @@
                         <aside>
                             <h1>Multiple Search</h1>
                             <div class="example">
-                                <select type="text" id="select-6" class="select-search" multiple>
+                                <select type="text" id="select-6" class="select" data-select="{'search': true}" multiple>
                                     <optgroup label="Atari">
                                         <option>Atari 2600</option>
                                         <option>Atari 5200</option>
@@ -777,7 +896,7 @@
                         <aside>
                             <h1>Single Descriptions</h1>
                             <div class="example">
-                                <select type="text" id="select-7" class="select-description">
+                                <select type="text" id="select-7" class="select" data-select="{'search': true, 'descriptions': true}">
                                     <optgroup label="Atari">
                                         <option data-description="Released: 1977">Atari 2600</option>
                                         <option data-description="Released: 1982">Atari 5200</option>
@@ -818,7 +937,7 @@
                                         <option data-description="Released: 2006">Nintendo DS Lite</option>
                                         <option data-description="Released: 2008/09">Nintendo DSi (XL)</option>
                                         <option data-description="Released: 2011/12">Nintendo 3DS (XL)</option>
-                                        <option data-description="Released: 20015-17">Nintendo New 2DS / 3DS (XL)</option>
+                                        <option data-description="Released: 2015-17">Nintendo New 2DS / 3DS (XL)</option>
                                     </optgroup>
                                     <optgroup label="SEGA">
                                         <option data-description="Released: 1983">SEGA SG-1000</option>
@@ -842,7 +961,7 @@
                         <aside>
                             <h1>Multiple Descriptions</h1>
                             <div class="example">
-                                <select type="text" id="select-8" class="select-description" multiple>
+                                <select type="text" id="select-8" class="select" data-select="{'search': true, 'descriptions': true}" multiple>
                                     <optgroup label="Atari">
                                         <option data-description="Released: 1977">Atari 2600</option>
                                         <option data-description="Released: 1982">Atari 5200</option>
@@ -883,7 +1002,7 @@
                                         <option data-description="Released: 2006">Nintendo DS Lite</option>
                                         <option data-description="Released: 2008/09">Nintendo DSi (XL)</option>
                                         <option data-description="Released: 2011/12">Nintendo 3DS (XL)</option>
-                                        <option data-description="Released: 20015-17">Nintendo New 2DS / 3DS (XL)</option>
+                                        <option data-description="Released: 2015-17">Nintendo New 2DS / 3DS (XL)</option>
                                     </optgroup>
                                     <optgroup label="SEGA">
                                         <option data-description="Released: 1983">SEGA SG-1000</option>
@@ -928,30 +1047,6 @@
                 </div>
             </section>
 
-            <section class="demo-content invert">
-                <div class="container">
-                    <header>
-                        <div class="badge badge-green">
-                            <span class="badge-icon"><span class="octicon octicon-mark-github"></span></span>
-                            <span class="badge-inner">We need your Support</span>
-                        </div>
-                    </header>
-                    <article class="bordered inner">
-                        <p>
-                            We need <mark>your help</mark> to make the <b>tail.select</b> script as comfortable and stable as possible!<br />
-                            Please report each issue and request your ideas and suggestions on our Github Repository!
-                        </p>
-                    </article>
-                    <article class="inner" style="padding:50px 30px 0 30px;">
-                        <p>
-                            <a href="https://www.github.com/pytesNET/tail.select" class="github-special-white">
-                                Written with <span class="octicon octicon-heart"></span> on <span class="octicon octicon-mark-github"></span>
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </section>
-
             <section class="demo-content">
                 <div class="container">
                     <header>
@@ -962,7 +1057,7 @@
                         <aside>
                             <h1>DeSelectable Single</h1>
                             <div class="example">
-                                <select type="text" id="select-9" class="select-deselect">
+                                <select type="text" id="select-9" class="select" data-select="{'search': true, 'descriptions': true, 'deselect': true}">
                                     <optgroup label="Atari">
                                         <option data-description="Released: 1977">Atari 2600</option>
                                         <option data-description="Released: 1982">Atari 5200</option>
@@ -1003,7 +1098,7 @@
                                         <option data-description="Released: 2006">Nintendo DS Lite</option>
                                         <option data-description="Released: 2008/09">Nintendo DSi (XL)</option>
                                         <option data-description="Released: 2011/12">Nintendo 3DS (XL)</option>
-                                        <option data-description="Released: 20015-17">Nintendo New 2DS / 3DS (XL)</option>
+                                        <option data-description="Released: 2015-17">Nintendo New 2DS / 3DS (XL)</option>
                                     </optgroup>
                                     <optgroup label="SEGA">
                                         <option data-description="Released: 1983">SEGA SG-1000</option>
@@ -1027,7 +1122,7 @@
                         <aside>
                             <h1>Limit Multiple</h1>
                             <div class="example">
-                                <select type="text" id="select-10" class="select-limit" multiple>
+                                <select type="text" id="select-10" class="select" data-select="{'search': true, 'descriptions': true, 'multiLimit': 10}" multiple>
                                     <optgroup label="Atari">
                                         <option data-description="Released: 1977">Atari 2600</option>
                                         <option data-description="Released: 1982">Atari 5200</option>
@@ -1068,7 +1163,7 @@
                                         <option data-description="Released: 2006">Nintendo DS Lite</option>
                                         <option data-description="Released: 2008/09">Nintendo DSi (XL)</option>
                                         <option data-description="Released: 2011/12">Nintendo 3DS (XL)</option>
-                                        <option data-description="Released: 20015-17">Nintendo New 2DS / 3DS (XL)</option>
+                                        <option data-description="Released: 2015-17">Nintendo New 2DS / 3DS (XL)</option>
                                     </optgroup>
                                     <optgroup label="SEGA">
                                         <option data-description="Released: 1983">SEGA SG-1000</option>
@@ -1122,6 +1217,30 @@ tail.select(".select-limit", {
                 </div>
             </section>
 
+            <section class="demo-content invert">
+                <div class="container">
+                    <header>
+                        <div class="badge badge-green">
+                            <span class="badge-icon"><span class="octicon octicon-mark-github"></span></span>
+                            <span class="badge-inner">We need your Support</span>
+                        </div>
+                    </header>
+                    <article class="bordered inner">
+                        <p>
+                            We need <mark>your help</mark> to make the <b>tail.select</b> script as comfortable and stable as possible!<br />
+                            Please report each issue and request your ideas and suggestions on our Github Repository!
+                        </p>
+                    </article>
+                    <article class="inner" style="padding:50px 30px 0 30px;">
+                        <p>
+                            <a href="https://www.github.com/pytesNET/tail.select" class="github-special-white">
+                                Written with <span class="octicon octicon-heart"></span> on <span class="octicon octicon-mark-github"></span>
+                            </a>
+                        </p>
+                    </article>
+                </div>
+            </section>
+
             <section class="demo-content">
                 <div class="container">
                     <header>
@@ -1130,9 +1249,9 @@ tail.select(".select-limit", {
                     </header>
                     <article class="side-by-side separated">
                         <aside>
-                            <h1>Multiple Select</h1>
+                            <h1>Move to an external Container</h1>
                             <div class="example">
-                                <select type="text" id="select-11" class="select-move" multiple>
+                                <select type="text" id="select-11" class="select-move1" multiple>
                                     <optgroup label="Atari">
                                         <option data-description="Released: 1977">Atari 2600</option>
                                         <option data-description="Released: 1982">Atari 5200</option>
@@ -1173,7 +1292,7 @@ tail.select(".select-limit", {
                                         <option data-description="Released: 2006">Nintendo DS Lite</option>
                                         <option data-description="Released: 2008/09">Nintendo DSi (XL)</option>
                                         <option data-description="Released: 2011/12">Nintendo 3DS (XL)</option>
-                                        <option data-description="Released: 20015-17">Nintendo New 2DS / 3DS (XL)</option>
+                                        <option data-description="Released: 2015-17">Nintendo New 2DS / 3DS (XL)</option>
                                     </optgroup>
                                     <optgroup label="SEGA">
                                         <option data-description="Released: 1983">SEGA SG-1000</option>
@@ -1193,13 +1312,75 @@ tail.select(".select-limit", {
                                     </optgroup>
                                 </select>
                             </div>
-                        </aside>
-                        <aside>
-                            <h1>Selection Container</h1>
                             <div class="example">
                                 <div style="width: 425px;margin:0 auto;">
                                     <div class="tail-move-container"></div>
                                 </div>
+                            </div>
+                        </aside>
+                        <aside>
+                            <h1>Move to the Label</h1>
+                            <div class="example">
+                                <select type="text" id="select-12" class="select-move2" multiple>
+                                    <optgroup label="Atari">
+                                        <option data-description="Released: 1977">Atari 2600</option>
+                                        <option data-description="Released: 1982">Atari 5200</option>
+                                        <option data-description="Released: 1986">Atari 7800</option>
+                                        <option data-description="Released: <i>Canceled</i>" disabled>Atari Panther</option>
+                                        <option data-description="Released: 1993">Atari Jaguar</option>
+                                        <option data-description="Released: <i>Canceled</i>" disabled>Atari Jaguar 2</option>
+                                        <option data-description="Released: 2005">Atari Flashback</option>
+                                        <option data-description="Released: 2005">Atari Flashback II</option>
+                                        <option data-description="Released: <i>Canceled</i>" disabled>Ataribox</option>
+                                    </optgroup>
+                                    <optgroup label="Microsoft">
+                                        <option data-description="Released: 2001">Microsoft XBox</option>
+                                        <option data-description="Released: 2005">Microsoft XBox 360</option>
+                                        <option data-description="Released: 2013">Microsoft XBox One</option>
+                                        <option data-description="Released: 1995">Microsoft Windows 95</option>
+                                        <option data-description="Released: 1998">Microsoft Windows 98</option>
+                                        <option data-description="Released: 2000">Microsoft Windows 2000 (ME)</option>
+                                        <option data-description="Released: 2001">Microsoft Windows XP</option>
+                                        <option data-description="Released: 2006">Microsoft Windows Vista</option>
+                                        <option data-description="Released: 2006">Microsoft Windows 7</option>
+                                        <option data-description="Released: 2012">Microsoft Windows 8(.1)</option>
+                                        <option data-description="Released: 2015">Microsoft Windows 10</option>
+                                    </optgroup>
+                                    <optgroup label="Nintendo">
+                                        <option data-description="Released: 1985">Nintendo Entertainment System</option>
+                                        <option data-description="Released: 1992">Super Nintendo Entertainment System</option>
+                                        <option data-description="Released: 1996">Nintendo 64</option>
+                                        <option data-description="Released: 2001">Nintendo GameCube</option>
+                                        <option data-description="Released: 2006">Nintendo Wii</option>
+                                        <option data-description="Released: 2012">Nintendo WiiU</option>
+                                        <option data-description="Released: 2017">Nintendo Switch</option>
+                                        <option data-description="Released: 1989">Nintendo GameBoy</option>
+                                        <option data-description="Released: 1998">Nintendo GameBoy Color</option>
+                                        <option data-description="Released: 2001">Nintendo GameBoy Advanced</option>
+                                        <option data-description="Released: 2003">Nintendo GameBoy Advanced SP</option>
+                                        <option data-description="Released: 2004">Nintendo DS</option>
+                                        <option data-description="Released: 2006">Nintendo DS Lite</option>
+                                        <option data-description="Released: 2008/09">Nintendo DSi (XL)</option>
+                                        <option data-description="Released: 2011/12">Nintendo 3DS (XL)</option>
+                                        <option data-description="Released: 2015-17">Nintendo New 2DS / 3DS (XL)</option>
+                                    </optgroup>
+                                    <optgroup label="SEGA">
+                                        <option data-description="Released: 1983">SEGA SG-1000</option>
+                                        <option data-description="Released: 1986">SEGA Master System</option>
+                                        <option data-description="Released: 1989">SEGA Mega Drive</option>
+                                        <option data-description="Released: 1990">SEGA Game Gear</option>
+                                        <option data-description="Released: 1994">SEGA Saturn</option>
+                                        <option data-description="Released: 1999">SEGA Dreamcast</option>
+                                    </optgroup>
+                                    <optgroup label="Sony">
+                                        <option data-description="Released: 1994">Sony PlayStation One</option>
+                                        <option data-description="Released: 2000">Sony PlayStation 2</option>
+                                        <option data-description="Released: 2006">Sony PlayStation 3</option>
+                                        <option data-description="Released: 2013">Sony PlayStation 4</option>
+                                        <option data-description="Released: 2004">Sony PlayStation Portable</option>
+                                        <option data-description="Released: 2011">Sony PlayStation Vita</option>
+                                    </optgroup>
+                                </select>
                             </div>
                         </aside>
                     </article>
@@ -1239,47 +1420,23 @@ tail.select(".select-limit", {
                         <h1>A manipulatable <b>Select</b> Field</h1>
                         <p>A small example to show the power of the tail.select.options class.</p>
                     </header>
-                    <article class="side-by-side separated">
-                        <aside class="aside-25 text-right">
-                            <div class="form-field">
-                                <button data-select="open">Open Field</button>
-                            </div>
-                            <div class="form-field">
-                                <button data-select="close">Close Field</button>
-                            </div>
-                            <div class="form-field">
-                                <button data-select="toggle">Toggle Field</button>
-                            </div>
-                            <div class="form-field">
-                                <button class="red" data-select="remove">Remove Field</button>
-                            </div>
-                            <div class="form-field">
-                                <button class="green" data-select="reinit" disabled>Re-Init Field</button>
-                            </div>
-                        </aside>
+                    <article class="side-by-side bordered">
                         <aside class="aside-50">
                             <div class="example">
-                                <select type="text" id="select-12" class="select-manipulatable" multiple></select>
+                                <select type="text" class="select-mani-main" data-placeholder="Select a Developer">
+                                    <option value="activision" data-description="573 Games">Activion</option>
+                                    <option value="bethesda" data-description="101 Games">Bethesda</option>
+                                    <option value="bioware" data-description="29 Games">BioWare</option>
+                                    <option value="cd-project" data-description="8 Games">CD Project Red</option>
+                                    <option value="deep-silver" data-description="120 Games">Deep Silver</option>
+                                    <option value="ubisoft" data-description="504 Games">Ubisoft</option>
+                                </select>
                             </div>
                         </aside>
-                        <aside class="aside-25 text-left">
-                            <div class="form-field">
-                                <button data-select="load" data-value="activision">Load Activision (344 Items)</button>
-                            </div>
-                            <div class="form-field">
-                                <button data-select="load" data-value="bethesda">Load Bethesda (54 Items)</button>
-                            </div>
-                            <div class="form-field">
-                                <button data-select="load" data-value="bioware">Load BioWare (29 Items)</button>
-                            </div>
-                            <div class="form-field">
-                                <button data-select="load" data-value="cd-project">Load CD Project Red (7 Items)</button>
-                            </div>
-                            <div class="form-field">
-                                <button data-select="load" data-value="deep-silver">Load Deep Silver (74 Items)</button>
-                            </div>
-                            <div class="form-field">
-                                <button data-select="load" data-value="ubisoft">Load Ubisoft (399 Items)</button>
+
+                        <aside class="aside-50">
+                            <div class="example">
+                                <select type="text" id="select-13" class="select-main-games" multiple></select>
                             </div>
                         </aside>
                     </article>
@@ -1290,83 +1447,69 @@ tail.select(".select-limit", {
                                 <b>HTML Structure</b>
 <pre class="language-markup line-numbers"><code>&lt;select class="select-manipulatable" multiple&gt;&lt;/select&gt;</code></pre>
                                 <b>JavaScript Code</b>
-<pre class="language-javascript line-numbers"><code>var mani = tail.select(".select-manipulatable", {
-    search: true,
-    descriptions: true,
-    multiLimit: 15,
-    animate: true
+<pre class="language-javascript line-numbers"><code>var first = select(".select-mani-main", {
+   classNames: "default white",     // For our demonstration only
+   descriptions: true,
+   deselect: true,
+   stayOpen: null,
+   sortItems: "ASC"
 });
+var games = select(".select-main-games", {
+   search: true,
+   classNames: "default white",     // For our demonstration only
+   descriptions: true,
+   sortGroups: "ASC",
+   sortItems: "ASC",
+   placeholder: "Select some Games...",
+   multiPinSelected: true,
+});
+games.updateLabel("← Select a Developer first!");
 
-// Action Buttons
-var buttons = document.querySelectorAll("button[data-select]"), l = buttons.length;
-for(var i = 0; i < l; i++){
-    buttons[i].addEventListener("click", function(event){
-        if(this.disabled){
-            return;
-        }
-        event.preventDefault();
-        event.stopPropagation(); // Prevent document handler.
-        action = this.getAttribute("data-select"),
-        value  = this.getAttribute("data-value") || null;
+// Hook First
+first.on("change", function(item, state){
+   if(state !== "select"){
+       return;
+   }
+   if(item.group == "Remove Developer"){
+       switch(item.key){
+           case "activision":  //@Fallthrough
+           case "bethesda":    //@Fallthrough
+           case "ubisoft":     //@Fallthrough
+           case "bioware":     //@Fallthrough
+           case "deep-silver":
+               var val = (item.key == "bioware")? "BioWare": item.key;
+               val = val.replace("-", " ").replace(/(?:^\w|[A-Z]|\b\w)/g, function(m, i){
+                   return m.toUpperCase();
+               });
+               break;
+           case "cd-project":
+               var val = "CD Project RED";
+               break;
+       }
+       if(val){
+           first.options.unselect(item.key, item.group, true);
+           first.disable();
 
-        if(action == "open"){
-            mani.open();
-        } else if(action == "close"){
-            mani.close();
-        } else if(action == "toggle"){
-            mani.toggle();
-        } else if(action == "remove"){
-            for(var b = 0; b < l; b++){
-                if(buttons[b].getAttribute("data-select") == "reinit"){
-                    buttons[b].disabled = false;
-                } else {
-                    buttons[b].disabled = true;
-                }
-            }
-            mani.remove();
-        } else if(action == "reinit"){
-            for(var b = 0; b < l; b++){
-                if(buttons[b].getAttribute("data-select") == "reinit"){
-                    buttons[b].disabled = true;
-                } else {
-                    buttons[b].disabled = false;
-                }
-            }
-            mani.init();
-        } else if(action == "onload"){
-            this.disabled = true;
-            this.className = this.className.replace("red", "loading");
+           var items = [].concat(Object.keys(games.options.items[val]));
+           for(var l = items.length, i = 0; i < l; i++){
+               games.options.remove(items[i], val, false);
+           }
+           games.query();
+           games.updateLabel("← Select a Developer first!");
 
-            var items = mani.options.items[this.getAttribute("data-group")];
-            for(var key in items){
-                mani.options.remove(key, items[key].group);
-            }
-            this.setAttribute("data-select", "load");
-            this.removeAttribute("data-group");
-            this.disabled = false;
-            this.innerText = this.innerText.replace("Unload", "Load");
-            this.className = this.className.replace("loading", "").trim();
-        } else if(action == "load"){
-            this.disabled = true;
-            this.className += " loading";
-
-            ajax(value, function(items, element){
-                var group = null;
-                for(var l = items.length, i = 0; i < l; i++){
-                    mani.options.add(items[i].value, items[i].text, items[i].group, false, false, items[i].desc);
-                    if(group == null){
-                        group =items[i].group;
-                    }
-                }
-                element.disabled = false;
-                element.setAttribute("data-select", "onload");
-                element.setAttribute("data-group", group);
-                element.innerText = element.innerText.replace("Load", "Unload");
-                element.className = element.className.replace("loading", "red");
-            }, this);
-        }
-    });
-}</code></pre>
+           first.enable();
+           first.options.move(item, undefined, "#");
+       }
+   } else {
+       first.options.unselect(item.key, item.group, true);
+       first.disable();
+       ajax(item.key, function(items){
+           games.options.add(items);
+           first.enable();
+           first.options.move(item, undefined, "Remove Developer");
+       });
+   }
+});</code></pre>
                             </div>
                         </div>
                     </footer>
@@ -1376,12 +1519,12 @@ for(var i = 0; i < l; i++){
             <section class="demo-content">
                 <div class="container">
                     <header>
-                        <h1>A hooked <b>Select</b> Field</h1>
+                        <h1>A hackable <b>Select</b> Field</h1>
                         <p>The magic of Hooks and Callbacks (Example for <a href="https://github.com/pytesNET/tail.select/issues/3#issuecomment-429315514">Issue #3</a>).</p>
                     </header>
                     <article class="side-by-side separated">
                         <aside class="aside-50">
-                            <select type="text" id="select-13" class="select-hooked" multiple>
+                            <select type="text" id="select-14" class="select-hooked" multiple>
                                 <option>Category #1</option>
                                 <option>  Category #2</option>
                                 <option>    Category #3</option>

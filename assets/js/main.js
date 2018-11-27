@@ -1,6 +1,15 @@
-require(["prism.min", "menuspy.min", "tail.demo", "source/tail.select"], function(prism, menu, website, select){
+require(["prism.min", "menuspy.min", "tail.demo", "source/tail.select", "langs/tail.select-all"], function(prism, menu, website, select, languages){
     "use strict";
-    var w = window, d = window.document;
+    var w = window, d = window.document, holder = [];
+
+    /*
+     |  INIT LANGUAGES
+     */
+    languages(select);
+
+    /*
+     |  AJAX FUNCTION
+     */
     var href = window.location.href.slice(0, window.location.href.lastIndexOf("/")+1);
     var ajax = function(value, callback, argument){
         var xhttp = new XMLHttpRequest();
@@ -13,47 +22,110 @@ require(["prism.min", "menuspy.min", "tail.demo", "source/tail.select"], functio
         xhttp.send();
     }
 
-    select("#select-special", {
+    /*
+     |  GENERAL ACTIONS
+     */
+    var link = function(source){
+        d.head.insertAdjacentHTML("beforeend", '<style id="tail-exchange">.tail-select{ display:none !important; }</style>');
+        d.querySelector("link#main-sheet").href = source;
+        setTimeout(function(){
+            d.head.removeChild(d.querySelector("style#tail-exchange"));
+        }, 500);
+    };
+    d.querySelector("select#change-design").addEventListener("change", function(){
+        var self = this;
+        holder.forEach(function(inst){
+            inst.config("classNames", [self.value, "default"]);
+        });
+        link("source/css/tail.select-" + this.value + ".css");
+    });
+    d.querySelector("select#change-color").addEventListener("change", function(){
+        var source = "source/css/";
+        var theme = d.querySelector(this.getAttribute("data-connect")).value;
+        switch(theme){
+            case "default":     //@Fallthrough
+            case "modern":
+                if(this.value == "white"){
+                    source += "tail.select-" + theme + ".css";
+                } else {
+                    source += "tail.select-" + theme + "-" + this.value + ".css";
+                }
+                break;
+            case "bootstrap2":  //@Fallthrough
+            case "bootstrap3":  //@Fallthrough
+            case "bootstrap4":
+                if(this.value == "default"){
+                    source += "tail.select-" + theme + ".css";
+                } else {
+                    source += theme + "/" + this.value + ".css";
+                }
+                break;
+        }
+        var self = this;
+        holder.forEach(function(inst){
+            inst.config("classNames", [theme, self.value]);
+        });
+        link(source);
+    });
+    d.querySelector("select#change-locale").addEventListener("change", function(){
+        var locale = this.value;
+        holder.forEach(function(inst){
+            inst.config("locale", locale);
+        });
+    });
+    d.querySelector("select#change-design").options.selectedIndex = 0;
+    d.querySelector("select#change-color").options.selectedIndex = 0;
+    d.querySelector("select#change-locale").options.selectedIndex = 0;
+
+    /*
+     |  HEADER DEMONSTRATION
+     */
+    holder = holder.concat(select("#select-special", {
         search: true,
         animate: true,
+        classNames: "default white",
         descriptions: true,
         multiSelectAll: true
-    });
+    }));
 
-    select(".select")
-    select(".select-search", {
-        search: true
-    });
-    select(".select-description", {
+    /*
+     |  CONTENT EXAMPLES
+     */
+    holder = holder.concat(select(".select", {
+        classNames: "default white"
+    }));
+    holder = holder.concat(select(".select-move1", {
         search: true,
-        descriptions: true
-    });
-    select(".select-deselect", {
-        search: true,
-        descriptions: true,
-        deselect: true,
-    });
-    select(".select-limit", {
-        search: true,
-        descriptions: true,
-        multiLimit: 10
-    });
-    select(".select-move", {
-        search: true,
+        classNames: "default white",
         descriptions: true,
         hideSelected: true,
         hideDisabled: true,
         multiLimit: 15,
         multiShowCount: false,
         multiContainer: ".tail-move-container"
-    });
-    select(".select-hooked", {
+    }));
+    holder = holder.concat(select(".select-move2", {
         search: true,
+        classNames: "default white",
+        descriptions: true,
+        hideSelected: true,
+        hideDisabled: true,
+        multiLimit: 15,
+        multiShowCount: false,
+        multiContainer: true
+    }));
+
+    /*
+     |  HOOKED EXAMPLE
+     */
+    holder = holder.concat(select(".select-hooked", {
+        search: true,
+        classNames: "default white",
         descriptions: true,
         multiSelectAll: true,
-        cbLoopItem: function(item, optgroup, search){
+        cbLoopItem: function(item, optgroup, search, root){
             var li = d.createElement("LI");
-                li.className = "tail-dropdown-option" + ((item.selected)? " selected": "") + ((item.disabled)? " disabled": "");
+                li.className = "dropdown-option" + ((item.selected)? " selected": "") + ((item.disabled)? " disabled": "");
 
             // Inner Text
             if(search){
@@ -75,7 +147,7 @@ require(["prism.min", "menuspy.min", "tail.demo", "source/tail.select"], functio
 
             // Inner Description
             if(this.con.descriptions && item.description){
-                li.innerHTML += '<span class="tail-option-description">' + item.description + '</span>';
+                li.innerHTML += '<span class="option-description">' + item.description + '</span>';
             }
             return li;
         }
@@ -86,86 +158,73 @@ require(["prism.min", "menuspy.min", "tail.demo", "source/tail.select"], functio
     }).on("change", function(item, state){
         var text = state[0].toUpperCase() + state.slice(1);
         d.querySelector("#hook-latest").innerText = text + " Option: '" + item.key + "'";
-    });
+    }));
 
-    // tail.select Element
-    var mani = select(".select-manipulatable", {
-        search: true,
+    /*
+     |  MANIPULATION EXAMPLE
+     */
+    var first = select(".select-mani-main", {
+        classNames: "default white",
         descriptions: true,
-        multiLimit: 15,
-        animate: true
+        deselect: true,
+        stayOpen: null,
+        sortItems: "ASC"
     });
+    var games = select(".select-main-games", {
+        search: true,
+        classNames: "default white",
+        descriptions: true,
+        sortGroups: "ASC",
+        sortItems: "ASC",
+        placeholder: "Select some Games...",
+        multiPinSelected: true
+    });
+    games.updateLabel("← Select a Developer first!");
 
-    // Action Buttons
-    var buttons = d.querySelectorAll("button[data-select]"), l = buttons.length;
-    for(var i = 0; i < l; i++){
-        buttons[i].addEventListener("click", function(event){
-            if(this.disabled){
-                return;
+    // Hook First
+    first.on("change", function(item, state){
+        if(state !== "select"){
+            return;
+        }
+        console.log(item.group);
+        if(item.group == "Remove Developer"){
+            switch(item.key){
+                case "activision":  //@Fallthrough
+                case "bethesda":    //@Fallthrough
+                case "ubisoft":     //@Fallthrough
+                case "bioware":     //@Fallthrough
+                case "deep-silver":
+                    var val = (item.key == "bioware")? "BioWare": item.key;
+                    val = val.replace("-", " ").replace(/(?:^\w|[A-Z]|\b\w)/g, function(m, i){
+                        return m.toUpperCase();
+                    });
+                    break;
+                case "cd-project":
+                    var val = "CD Project RED";
+                    break;
             }
-            event.preventDefault();
-            event.stopPropagation(); // Prevent document handler.
-            action = this.getAttribute("data-select"),
-            value  = this.getAttribute("data-value") || null;
+            if(val){
+                first.options.unselect(item.key, item.group, true);
+                first.disable();
 
-            if(action == "open"){
-                mani.open();
-            } else if(action == "close"){
-                mani.close();
-            } else if(action == "toggle"){
-                mani.toggle();
-            } else if(action == "remove"){
-                for(var b = 0; b < l; b++){
-                    if(buttons[b].getAttribute("data-select") == "reinit"){
-                        buttons[b].disabled = false;
-                    } else {
-                        buttons[b].disabled = true;
-                    }
+                var items = [].concat(Object.keys(games.options.items[val]));
+                for(var l = items.length, i = 0; i < l; i++){
+                    games.options.remove(items[i], val, false);
                 }
-                mani.remove();
-            } else if(action == "reinit"){
-                for(var b = 0; b < l; b++){
-                    if(buttons[b].getAttribute("data-select") == "reinit"){
-                        buttons[b].disabled = true;
-                    } else {
-                        buttons[b].disabled = false;
-                    }
-                }
-                mani.init();
-            } else if(action == "onload"){
-                this.disabled = true;
-                this.className = this.className.replace("button-red", "loading");
+                games.query();
+                games.updateLabel("← Select a Developer first!");
 
-                var items = mani.options.items[this.getAttribute("data-group")];
-                for(var key in items){
-                    mani.options.remove(key, items[key].group);
-                }
-                this.setAttribute("data-select", "load");
-                this.removeAttribute("data-group");
-                this.disabled = false;
-                this.innerText = this.innerText.replace("Unload", "Load");
-                this.className = this.className.replace("loading", "").trim();
-            } else if(action == "load"){
-                this.disabled = true;
-                this.className += " loading";
-
-                ajax(value, function(items, element){
-                    var group = null;
-                    for(var l = items.length, i = 0; i < l; i++){
-                        mani.options.add(items[i].value, items[i].text, items[i].group, false, false, items[i].desc);
-                        if(group == null){
-                            group =items[i].group;
-                        }
-                    }
-                    element.disabled = false;
-                    element.setAttribute("data-select", "onload");
-                    element.setAttribute("data-group", group);
-                    element.innerText = element.innerText.replace("Load", "Unload");
-                    element.className = element.className.replace("loading", "button-red");
-
-                    mani.toggle(false).toggle(false);
-                }, this);
+                first.enable();
+                first.options.move(item, undefined, "#");
             }
-        });
-    }
+        } else {
+            first.options.unselect(item.key, item.group, true);
+            first.disable();
+            ajax(item.key, function(items){
+                games.options.add(items);
+                first.enable();
+                first.options.move(item, undefined, "Remove Developer", true);
+            });
+        }
+    });
 });

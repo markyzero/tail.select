@@ -1,14 +1,14 @@
 ;(function(factory){
     if(typeof(define) == "function" && define.amd){
-        define(factory);                // AMD - Anonymous Module
+        define(function(){ return factory(window); });
     } else {
-        window.document.addEventListener("DOMContentLoaded", function(){
-            (factory())();
+        document.addEventListener("DOMContentLoaded", function(){
+            factory(window);
         });
     }
-}(function(){
+}(function(root){
 	"use strict";
-    var w = window, d = window.document;
+    var w = root, d = root.document;
 
     /*
      |  HELPER METHODs
@@ -127,39 +127,57 @@
         }
     }
 
-    // Init Website
-    var tailDemo = function(){
-        tail.each(d.querySelectorAll("ul.main-navi > li > ul.sub-navi"), function(){
-            var clone = this.cloneNode(true);
-                clone.style.zIndex = "-1";
-                clone.style.opacity = "0";
-                clone.style.display = "block";
-                clone.style.visibility = "hidden";
-                this.parentElement.appendChild(clone);
-            var width = clone.offsetWidth;
-                this.parentElement.removeChild(clone);
-            this.style.left = "50%";
-            this.style.marginLeft = "-" + (width/2) + "px";
-        });
+    // Ready
+    tail.each(d.querySelectorAll("ul.sub-navi"), function(){
+        var clone = this.cloneNode(true);
+            clone.style.cssText = "z-index:-1;opacity:0;display:block;visibility:hidden;";
+            this.parentElement.appendChild(clone);
 
-        // Init Tooltips
-        tail.each(d.querySelectorAll("*[data-tooltip]"), function(){
-            this.addEventListener("mouseenter", tooltip);
-            this.addEventListener("mouseleave", tooltip);
-        });
+        (function(el, main){
+            setTimeout(function(){
+                var width = el.offsetWidth;
+                el.parentElement.removeChild(el);
+                main.style.left = "50%";
+                main.style.marginLeft = "-" + (width/2) + "px";
+            }, 150);
+        }(clone, this));
+    });
 
-        // Init ScrollSpy
-        tail.each(d.querySelector("*[data-handle='menuspy']"), function(){
-            new MenuSpy(this);
-        });
+    // Init Tooltips
+    tail.each(d.querySelectorAll("*[data-tooltip]"), function(){
+        this.addEventListener("mouseenter", tooltip);
+        this.addEventListener("mouseleave", tooltip);
+    });
 
-        // Toggle Source Code
-        tail.each(d.querySelectorAll("*[data-handle='example']"), function(){
-            this.addEventListener("click", source);
-        });
-    }
-    tailDemo.version = "2.2.1";
+    // Init ScrollSpy
+    tail.each(d.querySelector("*[data-handle='menuspy']"), function(){
+        new MenuSpy(this);
+    });
 
-    // Return
-    return tailDemo;
+    // Toggle Source Code
+    tail.each(d.querySelectorAll("*[data-handle='example']"), function(){
+        this.addEventListener("click", source);
+    });
+
+    // Connect Select Fields
+    tail.each(d.querySelectorAll("select[data-connect]"), function(){
+        var source = d.querySelector(this.getAttribute("data-connect")), self = this;
+        if(!source){
+            return false;
+        }
+
+        var change = function(source, result){
+            tail.each(result.options, function(){
+                this.style.display = "none";
+            });
+            tail.each(result.querySelectorAll("[data-value='" + source.value + "']"), function(i){
+                this.style.removeProperty("display");
+                this.selected = (i == 1);
+            });
+        };
+        source.addEventListener("change", function(event){
+            change(event.target, self);
+        });
+        change(source, this);
+    });
 }));
