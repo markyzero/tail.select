@@ -42,6 +42,10 @@ npm install tail.select --save
 yarn add tail.select --save
 ```
 
+```markup
+bower install tail.select --save
+```
+
 ### Using a CDN
 You can also use the awesome CDN services from jsDelivr or UNPKG.
 
