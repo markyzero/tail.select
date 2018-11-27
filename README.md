@@ -32,7 +32,7 @@ Install & Embed
 The master branch will always contain the latest Release, which you can download directly here
 as [.tar](https://github.com/pytesNET/tail.select/tarball/master) or as [.zip](https://github.com/pytesNET/tail.select/zipball/master)
 archive, or just visit the [Releases](https://github.com/pytesNET/tail.select/releases) Page
-on GitHub directly. You can also be cool and using NPM (or YARN):
+on GitHub directly. You can also be cool and using npm, Yarn or bower:
 
 ```markup
 npm install tail.select --save
