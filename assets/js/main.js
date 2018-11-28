@@ -80,13 +80,15 @@ require(["prism.min", "menuspy.min", "tail.demo", "source/tail.select", "langs/t
     /*
      |  HEADER DEMONSTRATION
      */
-    holder = holder.concat(select("#select-special", {
+    var test = select("#select-special", {
         search: true,
         animate: true,
         classNames: "default white",
         descriptions: true,
         multiSelectAll: true
-    }));
+    });
+    holder = holder.concat(test);
+    console.log(test.options.items);
 
     /*
      |  CONTENT EXAMPLES
