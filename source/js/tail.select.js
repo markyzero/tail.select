@@ -1,12 +1,12 @@
 /*
  |  tail.select - Another solution to make select fields beautiful again!
- |  @file       ./js/tail.select.js
+ |  @file       ./source/js/tail.select.js
  |  @author     SamBrishes <sam@pytes.net>
- |  @version    0.5.3 - Beta
+ |  @version    0.5.4 - Beta
  |
  |  @website    https://github.com/pytesNET/tail.select
  |  @license    X11 / MIT License
- |  @copyright  Copyright © 2014 - 2018 SamBrishes, pytesNET <pytes@gmx.net>
+ |  @copyright  Copyright © 2014 - 2018  <info@pytes.net>
  */
 ;(function(factory){
     if(typeof(define) == "function" && define.amd){
@@ -184,8 +184,25 @@
             search: "Type in to search...",
             disabled: "This Field is disabled"
         },
+        modify: function(locale, id, string){
+            if(!(locale in this)){
+                return false;
+            }
+            if((id instanceof Object)){
+                for(var key in id){
+                    this.modify(locale, key, id[key]);
+                }
+            } else {
+                this[locale][id] = (typeof(string) == "string")? string: this[locale][id];
+            }
+            return true;
+        },
         register: function(locale, object){
+            if(typeof(locale) != "string" || !(object instanceof Object)){
+                return false;
+            }
             this[locale] = object;
+            return true;
         }
     };
 
@@ -465,7 +482,7 @@
 
         /*
          |  INTERNAL :: CALCULATE DROPDOWN
-         |  @version    0.5.0 [0.5.0]
+         |  @version    0.5.4 [0.5.0]
          */
         calc: function(){
             var clone = this.dropdown.cloneNode(true), height = this.con.height, search = 0,
@@ -473,7 +490,7 @@
 
             // Calculate Dropdown Height
             clone = this.dropdown.cloneNode(true);
-            clone.style.cssText = "height:auto;opacity:0;display:block;visibility:hidden;";
+            clone.style.cssText = "height:auto;min-height:auto;max-height:none;opacity:0;display:block;visibility:hidden;";
             clone.style.maxHeight = this.con.height + "px";
             clone.className += " cloned";
             this.dropdown.parentElement.appendChild(clone);
@@ -496,14 +513,14 @@
             }
             if(inner){
                 this.dropdown.style.maxHeight = height + "px";
-                inner.style.maxHeight = (height-search-2) + "px";
+                inner.style.maxHeight = (height-search) + "px";
             }
             return this;
         },
 
         /*
          |  API :: QUERY OPTIONS
-         |  @version    0.5.3 [0.5.0]
+         |  @version    0.5.4 [0.5.0]
          */
         query: function(search, conf){
             var root = create("DIV", "dropdown-inner"), self = this, item, tp, ul, li, a1, a2,
@@ -577,7 +594,7 @@
             // Add and Return
             var data = this.dropdown.querySelector(".dropdown-inner");
             this.dropdown[(data? "replace": "append") + "Child"](root, data);
-            return this.calc().updateCSV().updateLabel();
+            return this.updateCSV().updateLabel();
         },
 
         /*
@@ -1272,16 +1289,26 @@
 
         /*
          |  SET <STATE> FOR A BUNCH OF OPTIONs
-         |  @version    0.5.3 [0.5.3]
+         |  @version    0.5.4 [0.5.3]
          */
         walk: function(state, items, args){
-            if(items instanceof Array){
+            if(items instanceof Array || items.length){
                 for(var l = items.length, i = 0; i < l; i++){
                     this.handle.apply(this, [state, items[i], null].concat(args));
                 }
             } else if(items instanceof Object){
-                for(var key in items){
-                    this.handle.apply(this, [state, items[key], null].concat(args));
+                var self = this;
+                if(items.forEach){
+                    items.forEach(function(value){
+                        self.handle.apply(self, [state, value, null].concat(args));
+                    });
+                } else {
+                    for(var key in items){
+                        if(typeof(items[key]) != "string" && typeof(items[key]) != "number" && !(items[key] instanceof Element)){
+                            continue;
+                        }
+                        this.handle.apply(this, [state, items[key], (key in this.items? key: null)]).concat(args);
+                    }
                 }
             }
             return this;
@@ -1289,16 +1316,16 @@
 
         /*
          |  FIND SOME OPTIONs - WALKER EDITION
-         |  @version    0.5.0 [0.3.0]
+         |  @version    0.5.4 [0.3.0]
          */
         finder: function(search, config){
             if(typeof(this._findLoop) == "undefined"){
                 search = search.replace(/[\[\]{}()*+?.,^$\\|#-]/g, "\\$&");
                 if(config == "any"){
                     var regex  = "<option((\\s+[a-z0-9_\-]+(\\s*=\\s*(\\\".*?" + search + ".*?\\\"|'.*?" + search + ".*?'))?)>.+?";
-                        regex += "|(\\s+\\w+(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)+>[^<]*(" + search + ")[^<]*)<\\/option>";
+                        regex += "|(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)+>[^<]*(" + search + ")[^<]*)<\\/option>";
                 } else {
-                    var regex = "<option(\\s+\\w+(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)*>[^<]*(" + search + ")[^<]*<\\/option>";
+                    var regex = "<option(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)*>[^<]*(" + search + ")[^<]*<\\/option>";
                 }
             }
 

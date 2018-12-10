@@ -1,12 +1,12 @@
 /*
  |  tail.select - Another solution to make select fields beautiful again!
- |  @file       ./js/tail.select-es6.js
+ |  @file       ./source/js/tail.select-es6.js
  |  @author     SamBrishes <sam@pytes.net>
- |  @version    0.5.2 - Beta
+ |  @version    0.5.4 - Beta
  |
  |  @website    https://github.com/pytesNET/tail.select
  |  @license    X11 / MIT License
- |  @copyright  Copyright © 2014 - 2018 SamBrishes, pytesNET <pytes@gmx.net>
+ |  @copyright  Copyright © 2014 - 2018  <info@pytes.net>
  */
 /*
  |  EXPERIMENTAL ECMAScript 2015 (ES6) EDITION
@@ -163,8 +163,25 @@ var {select, options} = (function(root){
             search: "Rechercher ...",
             disabled: "Ce champs est désactivé"
         },
+        modify(locale, id, string){
+            if(!(locale in this)){
+                return false;
+            }
+            if((id instanceof Object)){
+                for(var key in id){
+                    this.modify(locale, key, id[key]);
+                }
+            } else {
+                this[locale][id] = (typeof(string) == "string")? string: this[locale][id];
+            }
+            return true;
+        },
         register(locale, object){
+            if(typeof(locale) != "string" || !(object instanceof Object)){
+                return false;
+            }
             this[locale] = object;
+            return true;
         }
     };
 
@@ -425,7 +442,7 @@ var {select, options} = (function(root){
 
         /*
          |  INTERNAL :: CALCULATE DROPDOWN
-         |  @version    0.5.0 [0.5.0]
+         |  @version    0.5.4 [0.5.0]
          */
         calc(){
             let clone = this.dropdown.cloneNode(true), height = this.con.height, search = 0,
@@ -433,7 +450,7 @@ var {select, options} = (function(root){
 
             // Calculate Dropdown Height
             clone = this.dropdown.cloneNode(true);
-            clone.style.cssText = "height:auto;opacity:0;display:block;visibility:hidden;";
+            clone.style.cssText = "height:auto;min-height:auto;max-height:none;opacity:0;display:block;visibility:hidden;";
             clone.style.maxHeight = this.con.height + "px";
             clone.className += " cloned";
             this.dropdown[parE].appendChild(clone);
@@ -456,14 +473,14 @@ var {select, options} = (function(root){
             }
             if(inner){
                 this.dropdown.style.maxHeight = height + "px";
-                inner.style.maxHeight = (height-search-2) + "px";
+                inner.style.maxHeight = (height-search) + "px";
             }
             return this;
         },
 
         /*
          |  API :: QUERY OPTIONS
-         |  @version    0.5.3 [0.5.0]
+         |  @version    0.5.4 [0.5.0]
          */
         query(search, conf){
             let root = create("DIV", "dropdown-inner"), tp, ul, a1, a2,
@@ -513,12 +530,12 @@ var {select, options} = (function(root){
                 a1.innerText = this.__["actionAll"];
                 a1.addEventListener("click", (ev) => {
                     ev.preventDefault();
-                    this.options.all("select");
+                    this.options.walk("select", this.dropdown.querySelectorAll(".dropdown-inner .dropdown-option"));
                 });
                 a2.innerText = this.__["actionNone"];
                 a2.addEventListener("click", (ev) => {
                     ev.preventDefault();
-                    this.options.all("unselect");
+                    this.options.walk("unselect", this.dropdown.querySelectorAll(".dropdown-inner .dropdown-option"));
                 });
 
                 // Add Element
@@ -531,7 +548,7 @@ var {select, options} = (function(root){
             // Add and Return
             let data = this.dropdown[que](".dropdown-inner");
             this.dropdown[(data? "replace": "append") + "Child"](root, data);
-            return this.calc().updateCSV().updateLabel();
+            return this.updateCSV().updateLabel();
         },
 
         /*
@@ -1204,16 +1221,23 @@ var {select, options} = (function(root){
 
         /*
          |  SET <STATE> FOR A BUNCH OF OPTIONs
-         |  @version    0.5.3 [0.5.3]
+         |  @version    0.5.4 [0.5.3]
          */
         walk(state, items, args){
-            if(items instanceof Array){
+            if(items instanceof Array || items.length){
                 for(var l = items.length, i = 0; i < l; i++){
                     this.handle.apply(this, [state, items[i], null].concat(args));
                 }
             } else if(items instanceof Object){
-                for(var key in items){
-                    this.handle.apply(this, [state, key, items[key]].concat(args));
+                if(items.forEach){
+                    items.forEach((e) => { this.handle.apply(this, [state, value, null].concat(args)); });
+                } else {
+                    for(var key in items){
+                        if(typeof(items[key]) != "string" && typeof(items[key]) != "number" && !(items[key] instanceof Element)){
+                            continue;
+                        }
+                        this.handle.apply(this, [state, items[key], (key in this.items? key: null)]).concat(args);
+                    }
                 }
             }
             return this;
@@ -1221,16 +1245,16 @@ var {select, options} = (function(root){
 
         /*
          |  FIND SOME OPTIONs - WALKER EDITION
-         |  @version    0.5.0 [0.3.0]
+         |  @version    0.5.4 [0.3.0]
          */
         *finder(search, config){
             search = search.replace(/[\[\]{}()*+?.,^$\\|#-]/g, "\\$&");
 
             // RegExp
-            let regex = "<option(\\s+\\w+(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)*>[^<]*(" + search + ")[^<]*<\\/option>";
+            let regex = "<option(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)*>[^<]*(" + search + ")[^<]*<\\/option>";
             if(config == "any"){
                 regex  = "<option((\\s+[a-z0-9_\-]+(\\s*=\\s*(\\\".*?" + search + ".*?\\\"|'.*?" + search + ".*?'))?)>.+?";
-                regex += "|(\\s+\\w+(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)+>[^<]*(" + search + ")[^<]*)<\\/option>";
+                regex += "|(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)+>[^<]*(" + search + ")[^<]*)<\\/option>";
             }
 
             // Handle Walker

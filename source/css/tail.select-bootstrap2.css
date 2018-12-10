@@ -1,13 +1,13 @@
 @charset "utf-8";
 /*
  |  tail.select - Another solution to make select fields beautiful again!
- |  @file       ./css/tail.select-bootstrap2.css
+ |  @file       ./source/css/tail.select-bootstrap2.css
  |  @author     SamBrishes <sam@pytes.net>
- |  @version    0.5.3 - Beta
+ |  @version    0.5.4 - Beta
  |
  |  @website    https://github.com/pytesNET/tail.select
  |  @license    X11 / MIT License
- |  @copyright  Copyright © 2014 - 2018 SamBrishes, pytesNET <pytes@gmx.net>
+ |  @copyright  Copyright © 2014 - 2018  <info@pytes.net>
  */
 
 /* @start GENERAL */
@@ -30,7 +30,6 @@
     margin: 0;
     padding: 0;
     display: inline-block;
-    z-index: 50;
     position: relative;
 }
 .tail-select mark{
@@ -158,7 +157,7 @@
     height: 0;
     margin: 9px 0 0 0;
     padding: 0;
-    z-index: 30;
+    z-index: 25;
     content: "";
     display: inline-block;
     position: absolute;
@@ -213,7 +212,7 @@
     width: 100%;
     margin: 2px 0 0;
     padding: 0;
-    z-index: 20;
+    z-index: 27;
     display: none;
     position: absolute;
     background-color: #FFFFFF;

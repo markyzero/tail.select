@@ -1,12 +1,12 @@
 /*
  |  tail.select - Another solution to make select fields beautiful again!
- |  @file       ./less/tail.select-default.less
+ |  @file       ./source/less/tail.select-default.less
  |  @author     SamBrishes <sam@pytes.net>
- |  @version    0.5.3 - Beta
+ |  @version    0.5.4 - Beta
  |
  |  @website    https://github.com/pytesNET/tail.select
  |  @license    X11 / MIT License
- |  @copyright  Copyright © 2014 - 2018 SamBrishes, pytesNET <pytes@gmx.net>
+ |  @copyright  Copyright © 2014 - 2018  <info@pytes.net>
  */
 
 // WHITE COLORS
@@ -304,6 +304,8 @@ SDFWMmgxMnYxMnptLTguNS0ySDN2LTEuNUw5LjUgNEgxMXYxLjVMNC41IDEyeiIvPjwvc3ZnPg==");
     }
 }
 .tail-select.active .select-label{
+    z-index: 27;
+
     &:after{
         transform: rotate(180deg);
         -moz-transform: rotate(180deg);
@@ -386,6 +388,9 @@ SDFWMmgxMnYxMnptLTguNS0ySDN2LTEuNUw5LjUgNEgxMXYxLjVMNC41IDEyeiIvPjwvc3ZnPg==");
             line-height: 16px;
         }
     }
+}
+.tail-select.active .select-dropdown{
+    z-index: 26;
 }
 .tail-select .select-dropdown{
     ul, ul li{
