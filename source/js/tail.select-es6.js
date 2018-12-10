@@ -1,12 +1,12 @@
 /*
  |  tail.select - Another solution to make select fields beautiful again!
- |  @file       ./source/js/tail.select-es6.js
+ |  @file       ./js/tail.select-es6.js
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.5.4 - Beta
  |
  |  @website    https://github.com/pytesNET/tail.select
  |  @license    X11 / MIT License
- |  @copyright  Copyright © 2014 - 2018  <info@pytes.net>
+ |  @copyright  Copyright © 2014 - 2018 SamBrishes, pytesNET <info@pytes.net>
  */
 /*
  |  EXPERIMENTAL ECMAScript 2015 (ES6) EDITION

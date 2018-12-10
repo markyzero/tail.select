@@ -1,4 +1,5 @@
 [synder]
+@basepath:  "source"
 title:      "Another solution to make select fields beautiful again!"
 status:     "Beta"
 author:     "SamBrishes"
@@ -16,7 +17,7 @@ copymail:   "info@pytes.net"
  |
  |  @website    {package:homepage}
  |  @license    X11 / MIT License
- |  @copyright  Copyright © {copyyear} {project:author} <{copymail}>
+ |  @copyright  Copyright © {copyyear} {package:author} <{copymail}>
  */
 [/default]
 
