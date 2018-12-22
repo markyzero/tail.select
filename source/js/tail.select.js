@@ -2,7 +2,7 @@
  |  tail.select - Another solution to make select fields beautiful again!
  |  @file       ./js/tail.select.js
  |  @author     SamBrishes <sam@pytes.net>
- |  @version    0.5.4 - Beta
+ |  @version    0.5.5 - Beta
  |
  |  @website    https://github.com/pytesNET/tail.select
  |  @license    X11 / MIT License
@@ -120,7 +120,7 @@
         tailSelect.inst["tail-" + this.id] = this;
         return this.init().bind();
     }, tailOptions;
-    tailSelect.version = "0.5.3";
+    tailSelect.version = "0.5.5";
     tailSelect.status = "beta";
     tailSelect.count = 0;
     tailSelect.inst = {};
@@ -154,6 +154,7 @@
         search: false,
         searchFocus: true,
         searchMarked: true,
+        searchDisabled: true,
         sortItems: false,
         sortGroups: false,
         sourceBind: false,
@@ -520,7 +521,7 @@
 
         /*
          |  API :: QUERY OPTIONS
-         |  @version    0.5.4 [0.5.0]
+         |  @version    0.5.5 [0.5.0]
          */
         query: function(search, conf){
             var root = create("DIV", "dropdown-inner"), self = this, item, tp, ul, li, a1, a2,
@@ -594,6 +595,9 @@
             // Add and Return
             var data = this.dropdown.querySelector(".dropdown-inner");
             this.dropdown[(data? "replace": "append") + "Child"](root, data);
+            if(cHAS(this.select, "active")){
+                this.calc();
+            }
             return this.updateCSV().updateLabel();
         },
 
@@ -1315,53 +1319,44 @@
         },
 
         /*
-         |  FIND SOME OPTIONs - WALKER EDITION
-         |  @version    0.5.4 [0.3.0]
+         |  FIND SOME OPTIONs - ARRAY EDITION
+         |  @version    0.5.5 [0.3.0]
          */
-        finder: function(search, config){
-            if(typeof(this._findLoop) == "undefined"){
-                search = search.replace(/[\[\]{}()*+?.,^$\\|#-]/g, "\\$&");
-                if(config == "any"){
-                    var regex  = "<option((\\s+[a-z0-9_\-]+(\\s*=\\s*(\\\".*?" + search + ".*?\\\"|'.*?" + search + ".*?'))?)>.+?";
-                        regex += "|(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)+>[^<]*(" + search + ")[^<]*)<\\/option>";
-                } else {
-                    var regex = "<option(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)*>[^<]*(" + search + ")[^<]*<\\/option>";
+        find: function(search, config){
+            var regex = new RegExp(search, "im"), filter = [], self = this,
+                filterKey = function(option){ return regex.test(option.text || option.value); },
+                filterAny = function(option){
+                    return (
+                        regex.test(option.text) || regex.test(option.value) ||
+                        Array.apply(null, option.attributes).filter(filterKey).length > 0
+                    );
+                };
+            Array.apply(null, this.self.e.options).map(function(option){
+                if(!((config == "any")? filterAny(option): filterKey(option))){
+                    return false;
                 }
-            }
-
-            // Start Walker
-            if(typeof(this._findLoop) == "undefined"){
-                this._findLoop = true;
-                this._findRegex = new RegExp(regex, "gmi");
-            }
-
-            // Handle Walker
-            var text = this.self.e.innerHTML, match, item, num;
-            while((match = this._findRegex.exec(text)) !== null){
-                num = (text.substr(0, this._findRegex.lastIndex).match(/\<\/option\>/g) || []).length;
-                item = this.get(this.self.e.options[num-1]);
-                if(item === null){
-                    continue;
+                if(self.disabled.indexOf(option) >= 0 && !self.self.con.searchDisabled){
+                    return false;
                 }
-                return item;
-            }
-
-            // Close Walker
-            delete this._findLoop;
-            delete this._findRegex;
-            return false;
+                filter.push(self.get(option));
+            });
+            return filter;
         },
 
         /*
-         |  FIND SOME OPTIONs - ARRAY EDITION
-         |  @version    0.5.0 [0.3.0]
+         |  FIND SOME OPTIONs - WALKER EDITION
+         |  @version    0.5.5 [0.3.0]
          */
-        find: function(search, config){
-            var items = [];
-            while((item = this.finder(search, config)) !== false){
-                items.push(item);
+        finder: function(search, config){
+            if(this._finderLoop === undefined){
+                this._finderLoop = this.find(search, config);
             }
-            return items;
+            var item;
+            while((item = this._finderLoop.shift()) !== undefined){
+                return item;
+            }
+            delete this._finderLoop;
+            return false;
         },
 
         /*

@@ -2,7 +2,7 @@
  |  tail.select - Another solution to make select fields beautiful again!
  |  @file       ./js/tail.select-es6.js
  |  @author     SamBrishes <sam@pytes.net>
- |  @version    0.5.4 - Beta
+ |  @version    0.5.5 - Beta
  |
  |  @website    https://github.com/pytesNET/tail.select
  |  @license    X11 / MIT License
@@ -73,7 +73,7 @@ var {select, options} = (function(root){
         tailSelect.inst["tail-" + this.id] = this;
         return this.init().bind();
     }, tailOptions;
-    tailSelect.version = "0.5.2";
+    tailSelect.version = "0.5.5";
     tailSelect.status = "dev";
     tailSelect.count = 0;
     tailSelect.inst = {};
@@ -480,7 +480,7 @@ var {select, options} = (function(root){
 
         /*
          |  API :: QUERY OPTIONS
-         |  @version    0.5.4 [0.5.0]
+         |  @version    0.5.5 [0.5.0]
          */
         query(search, conf){
             let root = create("DIV", "dropdown-inner"), tp, ul, a1, a2,
@@ -548,6 +548,9 @@ var {select, options} = (function(root){
             // Add and Return
             let data = this.dropdown[que](".dropdown-inner");
             this.dropdown[(data? "replace": "append") + "Child"](root, data);
+            if(this.select.classList.contains("active")){
+                this.calc();
+            }
             return this.updateCSV().updateLabel();
         },
 
@@ -1244,40 +1247,39 @@ var {select, options} = (function(root){
         },
 
         /*
-         |  FIND SOME OPTIONs - WALKER EDITION
-         |  @version    0.5.4 [0.3.0]
+         |  FIND SOME OPTIONs - ARRAY EDITION
+         |  @version    0.5.5 [0.3.0]
          */
-        *finder(search, config){
-            search = search.replace(/[\[\]{}()*+?.,^$\\|#-]/g, "\\$&");
-
-            // RegExp
-            let regex = "<option(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)*>[^<]*(" + search + ")[^<]*<\\/option>";
-            if(config == "any"){
-                regex  = "<option((\\s+[a-z0-9_\-]+(\\s*=\\s*(\\\".*?" + search + ".*?\\\"|'.*?" + search + ".*?'))?)>.+?";
-                regex += "|(\\s+\\w+(-?\\w*)*(\\s*=\\s*(?:\\\".*?\\\"|'.*?'))?)+>[^<]*(" + search + ")[^<]*)<\\/option>";
-            }
-
-            // Handle Walker
-            let text = this.self.e.innerHTML, regexp = new RegExp(regex, "gmi"), match, item, num;
-            while((match = regexp.exec(text)) !== null){
-                num = (text.substr(0, regexp.lastIndex).match(/\<\/option\>/g) || []).length;
-                item = this.get(this.self.e.options[num-1]);
-                if(item){
-                    yield item;
+        find(search, config){
+            let regex = new RegExp(search, "im"), filter = [],
+                filterKey = (option) => { return regex.test(option.text || option.value); },
+                filterAny = (option) => {
+                    return (
+                        regex.test(option.text) || regex.test(option.value) ||
+                        Array.apply(null, option.attributes).filter(filterKey.length) > 0
+                    );
+                };
+            Array.apply(null, this.self.e.options).map((option) => {
+                if(!((config == "any")? filterAny(option): filterKey(option))){
+                    return false;
                 }
-            }
+                if(this.disabled.indexOf(option) >= 0 && !this.self.con.searchDisabled){
+                    return false;
+                }
+                filter.push(this.get(option));
+            });
+            return filter;
         },
 
         /*
-         |  FIND SOME OPTIONs - ARRAY EDITION
-         |  @version    0.5.0 [0.3.0]
+         |  FIND SOME OPTIONs - WALKER EDITION
+         |  @version    0.5.5 [0.3.0]
          */
-        find(search, keys, groups){
-            let items = [];
-            for(let item of this.finder(search, groups)){
-                items.push(item);
+        *finder(search, config){
+            let list = this.find(search, config), item;
+            while((item = list.shift()) !== undefined){
+                yield item;
             }
-            return items;
         },
 
         /*
