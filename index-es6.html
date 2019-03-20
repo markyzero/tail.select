@@ -236,7 +236,7 @@
                         </div>
                         <div class="tail-project">
                             <span class="tail-title">tail.<b>select</b></span>
-                            <span class="tail-version">0.5.5 - <b>Beta</b></span>
+                            <span class="tail-version">0.5.7 - <b>Beta</b></span>
                         </div>
                     </a>
                 </div>
@@ -423,6 +423,7 @@
                                 <option value="en">Language: English</option>
                                 <option value="de">Sprache: Deutsch</option>
                                 <option value="fr">Langue: Français</option>
+                                <option value="pt_BR">Idioma: Português do Brasil</option>
                             </select>
                         </div>
                     </div>
@@ -1759,7 +1760,7 @@ first.on("change", function(item, state){
                             }
                             return li;
                         }
-                    })[0].on("open", function(){
+                    }).on("open", function(){
                         d.querySelector("#hook-latest").innerText = "Open Select Field";
                     }).on("close", function(){
                         d.querySelector("#hook-latest").innerText = "Close Select Field";
@@ -1777,7 +1778,7 @@ first.on("change", function(item, state){
                         deselect: true,
                         stayOpen: null,
                         sortItems: "ASC"
-                    })[0];
+                    });
                     var games = tail.select(".select-main-games", {
                         search: true,
                         classNames: "default white",
@@ -1786,7 +1787,7 @@ first.on("change", function(item, state){
                         sortItems: "ASC",
                         placeholder: "Select some Games...",
                         multiPinSelected: true
-                    })[0];
+                    });
                     games.updateLabel("← Select a Developer first!");
 
                     // Hook First

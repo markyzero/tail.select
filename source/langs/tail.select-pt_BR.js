@@ -1,6 +1,6 @@
 /*
  |  tail.select - Another solution to make select fields beautiful again!
- |  @file       ./langs/tail.select-de.js
+ |  @file       ./langs/tail.select-pt_BR.js
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.5.7 - Beta
  |
@@ -19,18 +19,18 @@
        }
    }
 }(function(select){
-    select.strings.register("de", {
-        all: "Alle",
-        none: "Keine",
-        actionAll: "Alle auswählen",
-        actionNone: "Alle abwählen",
-        empty: "Keine Optionen verfügbar",
-        emptySearch: "Keine Optionen gefunden",
-        limit: "Keine weiteren Optionen wählbar",
-        placeholder: "Wähle eine Option...",
-        placeholderMulti: "Wähle bis zu :limit Optionen...",
-        search: "Tippen zum suchen",
-        disabled: "Dieses Feld ist deaktiviert"
+    select.strings.register("pt_BR", {
+        all: "Todas",
+        none: "Nenhuma",
+        actionAll: "Selecionar todas",
+        actionNone: "Desmarcar todas",
+        empty: "Nenhuma opção disponível",
+        emptySearch: "Nenhuma opção encontrada",
+        limit: "Não é possível selecionar outra opção",
+        placeholder: "Escolha uma opção ...",
+        placeholderMulti: "Escolha até: :limit opção(ões) ...",
+        search: "Buscar ...",
+        disabled: "Campo desativado"
     });
     return select;
 }));
