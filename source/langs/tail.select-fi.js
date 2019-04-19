@@ -1,6 +1,6 @@
 /*
  |  tail.select - Another solution to make select fields beautiful again!
- |  @file       ./langs/tail.select-pt_BR.js
+ |  @file       ./langs/tail.select-fi.js
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.5.10 - Beta
  |
@@ -9,8 +9,8 @@
  |  @copyright  Copyright © 2014 - 2019 SamBrishes, pytesNET <info@pytes.net>
  */
 /*
- |  Translator:     Igor - (https://github.com/igorcm)
- |  GitHub:         https://github.com/pytesNET/tail.select/pull/34
+ |  Translator:     Noxludio - https://github.com/noxludio
+ |  GitHub:         https://github.com/pytesNET/tail.select/pull/35
  */
 ;(function(factory){
    if(typeof(define) == "function" && define.amd){
@@ -23,18 +23,18 @@
        }
    }
 }(function(select){
-    select.strings.register("pt_BR", {
-        all: "Todas",
-        none: "Nenhuma",
-        actionAll: "Selecionar todas",
-        actionNone: "Desmarcar todas",
-        empty: "Nenhuma opção disponível",
-        emptySearch: "Nenhuma opção encontrada",
-        limit: "Não é possível selecionar outra opção",
-        placeholder: "Escolha uma opção ...",
-        placeholderMulti: "Escolha até: :limit opção(ões) ...",
-        search: "Buscar ...",
-        disabled: "Campo desativado"
+    select.strings.register("fi", {
+        all: "Kaikki",
+        none: "Ei mitään",
+        actionAll: "Valitse kaikki",
+        actionNone: "Poista kaikki valinnat",
+        empty: "Ei vaihtoehtoja",
+        emptySearch: "Etsimääsi vaihtoehtoa ei löytynyt",
+        limit: "Muita vaihtoehtoja ei voi valita",
+        placeholder: "Valitse...",
+        placeholderMulti: "Valitse maksimissaan :limit...",
+        search: "Hae tästä...",
+        disabled: "Kenttä on poissa käytöstä"
     });
     return select;
 }));
