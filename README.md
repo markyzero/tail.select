@@ -17,10 +17,12 @@ jQuery Version, back from 2014 (+ a MooTools implementation)!
 
 Support
 -------
-You really like my **tail.select** script and want to support me and all of my projects? Then I
-would be extremely grateful for a coffee! (**Thanks to all Supporters**)
+<div style="text-align:center">
+You really like my **tail.select** script and want to support me and all of my projects?<br/>
+Then I would be extremely grateful for a coffee! (**Thanks to all Supporters**)
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pytesNET)
+</div>
 
 Features
 --------
