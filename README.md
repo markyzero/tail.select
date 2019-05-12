@@ -15,6 +15,13 @@ jQuery Version, back from 2014 (+ a MooTools implementation)!
 
 [Wanna translate **tail.select** in your language?](https://github.com/pytesNET/tail.select/wiki/Help-Translating)
 
+Support
+-------
+You really like my **tail.select** script and want to support me and all of my projects? Then I
+would be extremely grateful for a coffee! (**Thanks to all Supporters**)
+
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pytesNET)
+
 Features
 --------
 -   Compatible with all modern browsers, and also for **IE >= 9**.
