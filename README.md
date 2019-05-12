@@ -4,6 +4,7 @@ tail.select - Beautify Select Fields
 [![npm Downloads](https://s.pytes.me/f678004c)](https://s.pytes.net/2a8c886a)
 [![Support Me](https://s.pytes.me/4a1717aa)](https://buymeacoffee.com/pytesNET)
 [![License](https://s.pytes.net/8257ac72)](LICENSE.md)
+[![plainJS](https://s.pytes.net/cb2d2d94)](https://s.pytes.net/21d65dff)
 
 The **tail.select** script is back and ready to beautify your (multiple) select fields again, now
 also with an own search method and many features to increase the usability and handling on many as
