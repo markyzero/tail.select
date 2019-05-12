@@ -20,7 +20,7 @@ Support
 <p align="center" atyle="text-align:center">
 You really like my <b>tail.select</b> script and want to support me and all of my projects?<br/>
 Then I would be extremely grateful for a coffee! (<b>Thanks to all Supporters</b>)<br/><br/>
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pytesNET)
+<a href="https://www.buymeacoffee.com/pytesNET"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" title="Buy Me A Coffee" /></a>
 </p>
 
 Features
