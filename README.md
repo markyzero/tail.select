@@ -14,8 +14,8 @@ tail.select - Beautify Select Fields
 
 The **tail.select** script is back, re-written in vanilla JavaScript and ready to beautify and 
 extend your HTML `<select>` fields... again! Add a search bar, multi-selection utilities (such as 
-select all or none buttons), deselectability on single select fields, a perfect design any many 
-more userfriends functions to your web-application.
+select all or none buttons), deselectability on single select fields, a perfect design and many 
+more user-friendly functions to your web-application.
 
 ----------------------------
 
