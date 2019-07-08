@@ -8,8 +8,8 @@ tail.select - Beautify Select Fields
 
 Replace your `<select>` fields with style and without **jQuery**!
 
-<p align="center" style="text-align:center"><a href="https://github.pytes.net/tail.DateTime">
-<img src="https://repository-images.githubusercontent.com/157055836/51d40e80-9b33-11e9-8fbb-f05ce51a16c4" style="width:auto;max-width:640px;" />
+<p align="center" style="text-align:center"><a href="https://github.pytes.net/tail.select">
+<img src="https://repository-images.githubusercontent.com/150568173/1ad2ae00-a16e-11e9-9d27-4b29de95ebe6" style="width:auto;max-width:640px;" />
 </a></p>
 
 The **tail.select** script is back, re-written in vanilla JavaScript and ready to beautify and 
