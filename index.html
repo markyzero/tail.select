@@ -162,8 +162,8 @@
 
         <!-- Source -->
         <link id="main-sheet" type="text/css" rel="stylesheet" href="source/css/default/tail.select-light.css" />
-        <script type="text/javascript" src="source/js/tail.select.js?ver=0.5.13"></script>
-        <script type="text/javascript" src="source/langs/tail.select-all.js?ver=0.5.13"></script>
+        <script type="text/javascript" src="source/js/tail.select.js?ver=0.5.14"></script>
+        <script type="text/javascript" src="source/langs/tail.select-all.js?ver=0.5.14"></script>
 
         <!-- LESS -->
         <!-- <script type="text/javascript" src="assets/js/less.min.js?ver=3.8.1"></script> -->
@@ -178,7 +178,7 @@
                         </div>
                         <div class="tail-project">
                             <span class="tail-title">tail.<b>select</b></span>
-                            <span class="tail-version">0.5.13 - <b>Beta</b></span>
+                            <span class="tail-version">0.5.14 - <b>Beta</b></span>
                         </div>
                     </a>
                 </div>
@@ -231,6 +231,31 @@
                 <div class="example-container">
                     <div class="welcome-title">tail.select is back</div>
                     <div class="welcome-example">
+
+                        <select class="single-select">
+                            <option>Default</option>
+                            <option>"DQ"</option>
+                            <option>"Solo DQ</option>
+                            <option>'SQ'</option>
+                            <option>'Solo SQ</option>
+                            <option>\"Escaped DQ\"</option>
+                            <option>Escaped \"solo DQ</option>
+                            <option>\'Escaped SQ\'</option>
+                            <option>Escaped \'solo SQ</option>
+                            <option>\\\"Three BS with a DQ</option>
+                            <option>Double BS \\' SQ</option>
+                            <option>Question \noMark Item?</option>
+                            <option>Exclamation Mark Item!</option>
+                            <option>Hyphe\nated-Item</option>
+                            <option>(Parenthetical) Item</option>
+                            <option>[Bracketed] Item</option>
+                            <option>{Braced} Item</option>
+                            <option>\ Backslash Item</option>
+                            <option>\\ Double Backslash Item</option>
+                            <option>/ Forward Slash Item</option>
+                            <option>// Double Forward Slash Item</option>
+                        </select>
+
                         <select type="text" id="select-special" class="select-special" name="test" multiple>
                             <optgroup label="Atari">
                                 <option>Atari 2600</option>
@@ -1667,6 +1692,9 @@ first.on("change", function(item, state){
                         multiShowCount: false,
                         multiContainer: true
                     }));
+                    tail.select(".single-select", {
+                        classNames: "default white"
+                    })
 
                     /*
                      |  HOOKED EXAMPLE
