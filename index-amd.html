@@ -47,7 +47,7 @@
         <!-- Stylesheets -->
         <link type="text/css" rel="stylesheet" href="assets/css/octicons.css?ver=8.1.0" />
         <link type="text/css" rel="stylesheet" href="assets/css/tail.demo.css?ver=2.2.0" />
-        <link id="main-sheet" type="text/css" rel="stylesheet" href="source/css/tail.select-default.css" />
+        <link id="main-sheet" type="text/css" rel="stylesheet" href="source/css/default/tail.select-light.css" />
         <style type="text/css">
             .welcome{
                 min-height: 500px;
@@ -244,7 +244,7 @@
                         </div>
                         <div class="tail-project">
                             <span class="tail-title">tail.<b>select</b></span>
-                            <span class="tail-version">0.5.12 - <b>Beta</b></span>
+                            <span class="tail-version">0.5.13 - <b>Beta</b></span>
                         </div>
                     </a>
                 </div>
@@ -396,31 +396,43 @@
                         <div class="action-select">
                             <div class="select-icon"><span class="octicon octicon-paintcan"></span></div>
                             <select id="change-color" data-connect="#change-design">
-                                <option data-value="default" value="white">Color: White</option>
-                                <option data-value="default" value="black">Color: Black</option>
-                                <option data-value="modern" value="white">Color: White</option>
-                                <option data-value="modern" value="black">Color: Black</option>
+                                <option data-value="default" value="light">Color: Light (Octicons)</option>
+                                <option data-value="default" value="light-feather">Color: Light (Feather)</option>
+                                <option data-value="default" value="dark">Color: Dark (Octicons)</option>
+                                <option data-value="default" value="dark-feather">Color: Dark (Feather)</option>
+                                <option data-value="modern" value="light">Color: Light (Octicons)</option>
+                                <option data-value="modern" value="light-feather">Color: Light (Feather)</option>
+                                <option data-value="modern" value="dark">Color: Dark (Octicons)</option>
+                                <option data-value="modern" value="dark-feather">Color: Dark (Feather)</option>
                                 <option data-value="bootstrap2" value="default">Color: Default White</option>
-                                <option data-value="bootstrap2" value="primary-blue">Color: Primary Blue</option>
-                                <option data-value="bootstrap2" value="danger-red">Color: Danger Red</option>
-                                <option data-value="bootstrap2" value="warning-orange">Color: Warning Orange</option>
-                                <option data-value="bootstrap2" value="success-green">Color: Success Green</option>
-                                <option data-value="bootstrap2" value="info-blue">Color: Info Blue</option>
-                                <option data-value="bootstrap2" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap2" value="primary">Color: Primary Blue</option>
+                                <option data-value="bootstrap2" value="info">Color: Info Blue</option>
+                                <option data-value="bootstrap2" value="success">Color: Success Green</option>
+                                <option data-value="bootstrap2" value="warning">Color: Warning Orange</option>
+                                <option data-value="bootstrap2" value="danger">Color: Danger Red</option>
+                                <option data-value="bootstrap2" value="funky">Color: Funky Pink</option>
+                                <option data-value="bootstrap2" value="mystery">Color: Mystery Purple</option>
+                                <option data-value="bootstrap2" value="invert">Color: Invert Black</option>
                                 <option data-value="bootstrap3" value="default">Color: Default White</option>
-                                <option data-value="bootstrap3" value="primary-blue">Color: Primary Blue</option>
-                                <option data-value="bootstrap3" value="danger-red">Color: Danger Red</option>
-                                <option data-value="bootstrap3" value="warning-orange">Color: Warning Orange</option>
-                                <option data-value="bootstrap3" value="success-green">Color: Success Green</option>
-                                <option data-value="bootstrap3" value="info-blue">Color: Info Blue</option>
-                                <option data-value="bootstrap3" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap3" value="primary">Color: Primary Blue</option>
+                                <option data-value="bootstrap3" value="danger">Color: Danger Red</option>
+                                <option data-value="bootstrap3" value="warning">Color: Warning Orange</option>
+                                <option data-value="bootstrap3" value="success">Color: Success Green</option>
+                                <option data-value="bootstrap3" value="info">Color: Info Blue</option>
+                                <option data-value="bootstrap3" value="invert">Color: Invert Black</option>
                                 <option data-value="bootstrap4" value="default">Color: Default White</option>
-                                <option data-value="bootstrap4" value="primary-blue">Color: Primary Blue</option>
-                                <option data-value="bootstrap4" value="danger-red">Color: Danger Red</option>
-                                <option data-value="bootstrap4" value="warning-orange">Color: Warning Orange</option>
-                                <option data-value="bootstrap4" value="success-green">Color: Success Green</option>
-                                <option data-value="bootstrap4" value="info-blue">Color: Info Blue</option>
-                                <option data-value="bootstrap4" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap4" value="primary">Color: Primary Blue</option>
+                                <option data-value="bootstrap4" value="secondary">Color: Secondary Grey</option>
+                                <option data-value="bootstrap4" value="danger">Color: Danger Red</option>
+                                <option data-value="bootstrap4" value="warning">Color: Warning Orange</option>
+                                <option data-value="bootstrap4" value="success">Color: Success Green</option>
+                                <option data-value="bootstrap4" value="info">Color: Info Blue</option>
+                                <option data-value="bootstrap4" value="funky">Color: Funky Pink</option>
+                                <option data-value="bootstrap4" value="mystery">Color: Mystery Purple</option>
+                                <option data-value="bootstrap4" value="indigo">Color: Indigo</option>
+                                <option data-value="bootstrap4" value="teal">Color: Teal</option>
+                                <option data-value="bootstrap4" value="orange">Color: Orange</option>
+                                <option data-value="bootstrap4" value="invert">Color: Invert Black</option>
                             </select>
                         </div>
                     </div>

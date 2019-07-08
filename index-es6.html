@@ -50,7 +50,7 @@
         <script type="text/javascript" src="assets/js/prism.min.js?ver=1.15.0"></script>
         <script type="text/javascript" src="assets/js/tail.demo.js?ver=2.2.0"></script>
 
-        <link id="main-sheet" type="text/css" rel="stylesheet" href="source/css/tail.select-default.css" />
+        <link id="main-sheet" type="text/css" rel="stylesheet" href="source/css/default/tail.select-light.css" />
         <style type="text/css">
             .welcome{
                 min-height: 500px;
@@ -236,7 +236,7 @@
                         </div>
                         <div class="tail-project">
                             <span class="tail-title">tail.<b>select</b></span>
-                            <span class="tail-version">0.5.12 - <b>Beta</b></span>
+                            <span class="tail-version">0.5.13 - <b>Beta</b></span>
                         </div>
                     </a>
                 </div>
@@ -388,31 +388,43 @@
                         <div class="action-select">
                             <div class="select-icon"><span class="octicon octicon-paintcan"></span></div>
                             <select id="change-color" data-connect="#change-design">
-                                <option data-value="default" value="white">Color: White</option>
-                                <option data-value="default" value="black">Color: Black</option>
-                                <option data-value="modern" value="white">Color: White</option>
-                                <option data-value="modern" value="black">Color: Black</option>
+                                <option data-value="default" value="light">Color: Light (Octicons)</option>
+                                <option data-value="default" value="light-feather">Color: Light (Feather)</option>
+                                <option data-value="default" value="dark">Color: Dark (Octicons)</option>
+                                <option data-value="default" value="dark-feather">Color: Dark (Feather)</option>
+                                <option data-value="modern" value="light">Color: Light (Octicons)</option>
+                                <option data-value="modern" value="light-feather">Color: Light (Feather)</option>
+                                <option data-value="modern" value="dark">Color: Dark (Octicons)</option>
+                                <option data-value="modern" value="dark-feather">Color: Dark (Feather)</option>
                                 <option data-value="bootstrap2" value="default">Color: Default White</option>
-                                <option data-value="bootstrap2" value="primary-blue">Color: Primary Blue</option>
-                                <option data-value="bootstrap2" value="danger-red">Color: Danger Red</option>
-                                <option data-value="bootstrap2" value="warning-orange">Color: Warning Orange</option>
-                                <option data-value="bootstrap2" value="success-green">Color: Success Green</option>
-                                <option data-value="bootstrap2" value="info-blue">Color: Info Blue</option>
-                                <option data-value="bootstrap2" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap2" value="primary">Color: Primary Blue</option>
+                                <option data-value="bootstrap2" value="info">Color: Info Blue</option>
+                                <option data-value="bootstrap2" value="success">Color: Success Green</option>
+                                <option data-value="bootstrap2" value="warning">Color: Warning Orange</option>
+                                <option data-value="bootstrap2" value="danger">Color: Danger Red</option>
+                                <option data-value="bootstrap2" value="funky">Color: Funky Pink</option>
+                                <option data-value="bootstrap2" value="mystery">Color: Mystery Purple</option>
+                                <option data-value="bootstrap2" value="invert">Color: Invert Black</option>
                                 <option data-value="bootstrap3" value="default">Color: Default White</option>
-                                <option data-value="bootstrap3" value="primary-blue">Color: Primary Blue</option>
-                                <option data-value="bootstrap3" value="danger-red">Color: Danger Red</option>
-                                <option data-value="bootstrap3" value="warning-orange">Color: Warning Orange</option>
-                                <option data-value="bootstrap3" value="success-green">Color: Success Green</option>
-                                <option data-value="bootstrap3" value="info-blue">Color: Info Blue</option>
-                                <option data-value="bootstrap3" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap3" value="primary">Color: Primary Blue</option>
+                                <option data-value="bootstrap3" value="danger">Color: Danger Red</option>
+                                <option data-value="bootstrap3" value="warning">Color: Warning Orange</option>
+                                <option data-value="bootstrap3" value="success">Color: Success Green</option>
+                                <option data-value="bootstrap3" value="info">Color: Info Blue</option>
+                                <option data-value="bootstrap3" value="invert">Color: Invert Black</option>
                                 <option data-value="bootstrap4" value="default">Color: Default White</option>
-                                <option data-value="bootstrap4" value="primary-blue">Color: Primary Blue</option>
-                                <option data-value="bootstrap4" value="danger-red">Color: Danger Red</option>
-                                <option data-value="bootstrap4" value="warning-orange">Color: Warning Orange</option>
-                                <option data-value="bootstrap4" value="success-green">Color: Success Green</option>
-                                <option data-value="bootstrap4" value="info-blue">Color: Info Blue</option>
-                                <option data-value="bootstrap4" value="invert-black">Color: Invert Black</option>
+                                <option data-value="bootstrap4" value="primary">Color: Primary Blue</option>
+                                <option data-value="bootstrap4" value="secondary">Color: Secondary Grey</option>
+                                <option data-value="bootstrap4" value="danger">Color: Danger Red</option>
+                                <option data-value="bootstrap4" value="warning">Color: Warning Orange</option>
+                                <option data-value="bootstrap4" value="success">Color: Success Green</option>
+                                <option data-value="bootstrap4" value="info">Color: Info Blue</option>
+                                <option data-value="bootstrap4" value="funky">Color: Funky Pink</option>
+                                <option data-value="bootstrap4" value="mystery">Color: Mystery Purple</option>
+                                <option data-value="bootstrap4" value="indigo">Color: Indigo</option>
+                                <option data-value="bootstrap4" value="teal">Color: Teal</option>
+                                <option data-value="bootstrap4" value="orange">Color: Orange</option>
+                                <option data-value="bootstrap4" value="invert">Color: Invert Black</option>
                             </select>
                         </div>
                     </div>
@@ -1649,33 +1661,19 @@ first.on("change", function(item, state){
                     };
                     d.querySelector("select#change-design").addEventListener("change", function(){
                         var self = this;
+                        if(self.value === "default" || self.value === "modern"){
+                            var color = "light";
+                        } else {
+                            var color = "default";
+                        }
                         holder.forEach(function(inst){
-                            inst.config("classNames", [self.value, "default"]);
+                            inst.config("classNames", [self.value, color]);
                         });
-                        link("source/css/tail.select-" + this.value + ".css");
+                        link("source/css/" + this.value + "/tail.select-" + color + ".css");
                     });
                     d.querySelector("select#change-color").addEventListener("change", function(){
-                        var source = "source/css/";
                         var theme = d.querySelector(this.getAttribute("data-connect")).value;
-                        switch(theme){
-                            case "default":     //@Fallthrough
-                            case "modern":
-                                if(this.value == "white"){
-                                    source += "tail.select-" + theme + ".css";
-                                } else {
-                                    source += "tail.select-" + theme + "-" + this.value + ".css";
-                                }
-                                break;
-                            case "bootstrap2":  //@Fallthrough
-                            case "bootstrap3":  //@Fallthrough
-                            case "bootstrap4":
-                                if(this.value == "default"){
-                                    source += "tail.select-" + theme + ".css";
-                                } else {
-                                    source += theme + "/" + this.value + ".css";
-                                }
-                                break;
-                        }
+                        var source = "source/css/" + theme + "/tail.select-" + this.value + ".css";
                         var self = this;
                         holder.forEach(function(inst){
                             inst.config("classNames", [theme, self.value]);

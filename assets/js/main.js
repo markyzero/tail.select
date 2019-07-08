@@ -34,33 +34,19 @@ require(["prism.min", "menuspy.min", "tail.demo", "source/tail.select", "langs/t
     };
     d.querySelector("select#change-design").addEventListener("change", function(){
         var self = this;
+        if(self.value === "default" || self.value === "modern"){
+            var color = "light";
+        } else {
+            var color = "default";
+        }
         holder.forEach(function(inst){
-            inst.config("classNames", [self.value, "default"]);
+            inst.config("classNames", [self.value, color]);
         });
-        link("source/css/tail.select-" + this.value + ".css");
+        link("source/css/" + this.value + "/tail.select-" + color + ".css");
     });
     d.querySelector("select#change-color").addEventListener("change", function(){
-        var source = "source/css/";
         var theme = d.querySelector(this.getAttribute("data-connect")).value;
-        switch(theme){
-            case "default":     //@Fallthrough
-            case "modern":
-                if(this.value == "white"){
-                    source += "tail.select-" + theme + ".css";
-                } else {
-                    source += "tail.select-" + theme + "-" + this.value + ".css";
-                }
-                break;
-            case "bootstrap2":  //@Fallthrough
-            case "bootstrap3":  //@Fallthrough
-            case "bootstrap4":
-                if(this.value == "default"){
-                    source += "tail.select-" + theme + ".css";
-                } else {
-                    source += theme + "/" + this.value + ".css";
-                }
-                break;
-        }
+        var source = "source/css/" + theme + "/tail.select-" + this.value + ".css";
         var self = this;
         holder.forEach(function(inst){
             inst.config("classNames", [theme, self.value]);
