@@ -681,7 +681,7 @@
             // Inner Text
             if(search && search.length > 0 && this.con.searchMarked){
                 search = this.options.applyLinguisticRules(search);
-                li.innerHTML = item.value.replace(new RegExp("(" + search + ")", "i"), "<mark>$1</mark>");
+                li.innerHTML = item.value.replace(new RegExp("(" + search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "i"), "<mark>$1</mark>");
             } else {
                 li.innerText = item.value;
             }
